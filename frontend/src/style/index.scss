@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+* {
+  font-family: $main-font;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+:root {
+  background-color: #0e1927;
+}
