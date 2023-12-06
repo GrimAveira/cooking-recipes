@@ -1,0 +1,28 @@
+@import "../../style/variables.scss";
+
+.container {
+  min-width: 630px;
+  height: 740px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.a {
+  margin-bottom: 25%;
+  width: 330px;
+  height: 95px;
+  border: solid white;
+
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 35px;
+  letter-spacing: 0.3rem;
+  text-align: center;
+  line-height: 95px;
+}
+.a:hover {
+  transition: 3s;
+  background: $gradient;
+}
