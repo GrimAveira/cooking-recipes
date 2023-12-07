@@ -6,10 +6,10 @@ import drinks from "./drinks.png";
 import snacks from "./snacks.png";
 
 export const categoryCards = [
-  { img: bakes, url: "bakes" },
-  { img: desserts, url: "desserts" },
-  { img: broths, url: "broths" },
-  { img: soups, url: "soups" },
-  { img: drinks, url: "drinks" },
-  { img: snacks, url: "snacks" },
+  { img: bakes, url: "bakes", title: "Выпечка" },
+  { img: desserts, url: "desserts", title: "Дессерты" },
+  { img: broths, url: "broths", title: "Бульоны" },
+  { img: soups, url: "soups", title: "Супы" },
+  { img: drinks, url: "drinks", title: "Напитки" },
+  { img: snacks, url: "snacks", title: "Закуски" },
 ];

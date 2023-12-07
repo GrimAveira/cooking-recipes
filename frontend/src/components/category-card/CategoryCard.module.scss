@@ -1,12 +1,22 @@
 @import "../../style/variables.scss";
 
 .container {
-  min-width: 630px;
+  width: 633px;
   height: 740px;
-  flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: end;
+  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+}
+.p {
+  margin-bottom: 150px;
+
+  font-family: "Marck Script";
+
+  color: white;
+
+  font-weight: 400;
+  font-size: 90px;
 }
 .a {
   margin-bottom: 25%;
@@ -25,6 +35,5 @@
 }
 .a:hover {
   background: white;
-  border-color: black;
   color: black;
 }
