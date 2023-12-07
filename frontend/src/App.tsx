@@ -1,4 +1,5 @@
 import CategoryCards from "./components/category-cards/CategoryCards";
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <CategoryCards />
+      <Footer />
     </>
   );
 }
