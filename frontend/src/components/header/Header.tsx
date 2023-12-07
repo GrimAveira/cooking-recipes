@@ -7,7 +7,9 @@ const Header = () => {
     <header className={styles.container}>
       <img className={styles.menu} src={menu} />
       <div className={styles.blur}></div>
-      <img className={styles.logo} src={logo} />
+      <a href="/">
+        <img className={styles.logo} src={logo} />
+      </a>
       <Button title="Вход" className={styles.button} />
     </header>
   );

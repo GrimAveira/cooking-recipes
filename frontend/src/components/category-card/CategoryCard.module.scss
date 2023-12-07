@@ -21,8 +21,10 @@
   letter-spacing: 0.3rem;
   text-align: center;
   line-height: 95px;
+  transition: 0.3s linear;
 }
 .a:hover {
-  transition: 3s;
-  background: $gradient;
+  background: white;
+  border-color: black;
+  color: black;
 }
