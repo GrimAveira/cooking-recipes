@@ -1,0 +1,15 @@
+@import "../../style/variables.scss";
+.container {
+  display: flex;
+  align-items: center;
+}
+.line {
+  box-sizing: border-box;
+  width: 56px;
+  padding-top: 5px;
+  background: $gradient;
+  border-radius: 10px;
+}
+.line:not(:first-child) {
+  margin-top: 10px;
+}
