@@ -1,11 +1,11 @@
 import CategoryCards from "./components/category-cards/CategoryCards";
 import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
+import Shell from "./components/shell/Shell";
 
 function App() {
   return (
     <>
-      <Header />
+      <Shell />
       <CategoryCards />
       <Footer />
     </>

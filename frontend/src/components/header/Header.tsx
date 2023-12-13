@@ -4,13 +4,15 @@ import { logo } from "../../assets";
 import Burger from "../burger/Burger.tsx";
 
 interface IProps {
+  show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header = ({ setShow }: IProps) => {
+const Header = ({ show, setShow }: IProps) => {
   return (
     <header className={styles.container}>
       <Burger
+        show={show}
         className={styles.menu}
         onClick={() => {
           setShow((show: boolean) => !show);
