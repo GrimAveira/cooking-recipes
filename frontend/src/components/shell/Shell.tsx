@@ -1,5 +1,5 @@
 import Header from "../header/Header";
-import BurgerMenu from "../burger-menu/BurgerMenu";
+import Menu from "../menu/Menu";
 import { useState } from "react";
 import styles from "./Shell.module.scss";
 
@@ -9,7 +9,7 @@ function Shell() {
   return (
     <div className={styles.container}>
       <Header show={show} setShow={setShow} />
-      <BurgerMenu show={show} />
+      <Menu show={show} />
     </div>
   );
 }

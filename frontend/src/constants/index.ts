@@ -13,3 +13,9 @@ export const categoryCards = [
   { img: drinks, url: "drinks", title: "Напитки" },
   { img: snacks, url: "snacks", title: "Закуски" },
 ];
+
+export const titles = [
+  { title: "ИЗБРАННОЕ", url: "favourites" },
+  { title: "ЛИЧНЫЙ КАБИНЕТ", url: "lk" },
+  { title: "О САЙТЕ", url: "about" },
+];
