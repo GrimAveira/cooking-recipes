@@ -6,7 +6,7 @@
   height: 100vh;
   transition: 0.25s;
   transform: translateX(-100%);
-  z-index: 10;
+  z-index: 30;
 }
 .menuShow {
   @extend .menu;
@@ -22,7 +22,7 @@
   z-index: 1;
 }
 .content {
-  margin-top: 250px;
+  margin-top: 200px;
   position: absolute;
   z-index: 2;
 }
