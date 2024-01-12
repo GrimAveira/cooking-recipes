@@ -8,11 +8,11 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLDivElement> {
 const Burger: React.FC<IProps> = (props) => {
   return (
     <div {...props} className={`${styles.container} ${props.className}`}>
-      <div>
-        <div className={`${props.show ? styles.lineTop : styles.line}`} />
-        <div className={`${props.show ? styles.lineMid : styles.line}`} />
-        <div className={`${props.show ? styles.lineBot : styles.line}`} />
-      </div>
+      <ul>
+        <li className={`${props.show ? styles.lineTop : styles.line}`} />
+        <li className={`${props.show ? styles.lineMid : styles.line}`} />
+        <li className={`${props.show ? styles.lineBot : styles.line}`} />
+      </ul>
     </div>
   );
 };
