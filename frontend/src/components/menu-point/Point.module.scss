@@ -1,0 +1,11 @@
+@import "../../style/variables.scss";
+
+.li {
+  border-bottom: 1px solid $brick-color;
+  margin: 70px 40px;
+  padding-bottom: 15px;
+}
+a {
+  font-size: 25px;
+  letter-spacing: 0.3rem;
+}

@@ -1,0 +1,29 @@
+@import "../../style/variables.scss";
+.container {
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+.line {
+  box-sizing: border-box;
+  width: 56px;
+  height: 4px;
+  background: $gradient;
+  border-radius: 40px;
+  transition: 0.25s;
+}
+.line:not(:first-child) {
+  margin-top: 10px;
+}
+.lineTop {
+  @extend .line;
+  transform: translate(0, 13px) rotate(45deg);
+}
+.lineMid {
+  @extend .line;
+  opacity: 0;
+}
+.lineBot {
+  @extend .line;
+  transform: translate(0, -15px) rotate(-45deg);
+}

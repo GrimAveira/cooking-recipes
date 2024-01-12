@@ -1,0 +1,12 @@
+{
+  "name": "cooking-recipes",
+  "version": "1.0.0",
+  "description": "Web-application for cooking recipes, where users can create, scoring, sharing and saving users recipes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm run dev"
+  },
+  "author": "",
+  "license": "ISC"
+}
