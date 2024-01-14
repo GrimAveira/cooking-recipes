@@ -1,32 +1,41 @@
+@import "../../style/variables.scss";
+
 .container {
-  display: flex;
-  height: 170px;
+  height: 370px;
   padding: 10px;
 }
-.info {
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100%;
-  width: 70%;
-}
 .feedbackButton {
+  display: block;
+  margin: 100px auto;
   height: 40px;
   font-weight: 500;
   font-size: 20px;
   cursor: pointer;
+  border-bottom: 2px solid $brick-color;
 }
 .about {
-  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid $brick-color;
+  border-radius: 30px;
+  padding: 10px;
 }
 .icon {
   height: 50px;
   width: 50px;
 }
 .iconContainer {
-  margin: 15px;
+  display: block;
+  margin: 10px;
+}
+.lineBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line {
+  width: 70%;
+  height: 2px;
+  background: $gradient;
 }

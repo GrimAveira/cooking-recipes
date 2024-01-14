@@ -10,11 +10,13 @@ function Shell() {
   return (
     <div className={styles.container}>
       <Burger
-        title="Меню"
         show={show}
-        className={styles.menuButton}
-        onClick={() => {
-          setShow((show: boolean) => !show);
+        div={{
+          title: "Меню",
+          onClick: () => {
+            setShow((show: boolean) => !show);
+          },
+          className: styles.menuButton,
         }}
       />
       <Header />

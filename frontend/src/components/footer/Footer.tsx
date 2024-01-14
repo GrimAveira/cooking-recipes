@@ -20,21 +20,23 @@ const URLIcon = (icon: URLIconI) => {
 const Footer = () => {
   return (
     <footer className={styles.container}>
-      <section className={styles.info}>
-        <button className={styles.feedbackButton}>Обратная связь</button>
+      <button className={styles.feedbackButton}>Обратная связь</button>
+      <section className={styles.lineBlock}>
+        <div className={styles.line} />
+        <ul className={styles.about}>
+          {icons.map((icon) => {
+            return (
+              <URLIcon
+                svg={icon.svg}
+                title={icon.title}
+                url={icon.url}
+                key={icon.title}
+              />
+            );
+          })}
+        </ul>
+        <div className={styles.line} />
       </section>
-      <ul className={styles.about}>
-        {icons.map((icon) => {
-          return (
-            <URLIcon
-              svg={icon.svg}
-              title={icon.title}
-              url={icon.url}
-              key={icon.title}
-            />
-          );
-        })}
-      </ul>
     </footer>
   );
 };
