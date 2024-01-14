@@ -1,21 +1,22 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CategoryCards from "./components/category-cards/CategoryCards";
-import Footer from "./components/footer/Footer";
-import Shell from "./components/shell/Shell";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
 
-const router = createBrowserRouter([
+const routerShell = createBrowserRouter([
   {
     path: "/",
-    element: <CategoryCards />,
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
 function App() {
   return (
     <>
-      <Shell />
-      <RouterProvider router={router} />
-      <Footer />
+      <RouterProvider router={routerShell} />
     </>
   );
 }
