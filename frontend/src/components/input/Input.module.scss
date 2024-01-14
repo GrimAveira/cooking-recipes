@@ -1,0 +1,8 @@
+@import "../../style/variables.scss";
+
+.input {
+  background: rgba(136, 152, 166, 0.4);
+  border-radius: 10px;
+
+  border: 2px solid $brick-color;
+}

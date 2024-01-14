@@ -1,0 +1,36 @@
+@import "../../style/variables.scss";
+
+.container {
+  background-image: url(../../assets/login.jpg);
+
+  background-position: center;
+  background-size: cover;
+
+  height: 100vh;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  width: 620px;
+  height: 620px;
+
+  border: 2px solid $brick-color;
+  border-radius: 20px;
+}
+.p {
+  font-family: "Marck Script";
+
+  color: white;
+
+  font-weight: 500;
+  font-size: 60px;
+}
+.input {
+  width: 340px;
+  height: 55px;
+}
