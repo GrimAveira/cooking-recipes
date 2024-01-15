@@ -8,5 +8,8 @@
     "frontend": "cd frontend && npm run dev"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0"
+  }
 }
