@@ -1,18 +1,21 @@
 @import "./variables.scss";
 
 * {
-  font-family: $main-font;
-  margin: 0;
-  padding: 0;
-  border: none;
-  list-style: none;
-  text-decoration: none;
-  color: white;
-  background: none;
-  scroll-behavior: smooth;
+	box-sizing: border-box;
+	font-family: $main-font;
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style: none;
+	text-decoration: none;
+	color: white;
+	background: none;
+	scroll-behavior: smooth;
 }
-
+a {
+	letter-spacing: 0;
+}
 :root {
-  position: relative;
-  background-color: black;
+	position: relative;
+	background-color: black;
 }
