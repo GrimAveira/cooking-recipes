@@ -21,6 +21,10 @@ const routerShell = createBrowserRouter([
 		path: "recipes/:type",
 		element: <Recipes />,
 	},
+	{
+		path: "recipes/:type/:subtype",
+		element: <Recipes />,
+	},
 ]);
 
 function App() {

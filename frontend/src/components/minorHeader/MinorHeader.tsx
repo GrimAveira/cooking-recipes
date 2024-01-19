@@ -1,16 +1,29 @@
 import React from "react";
 import styles from "./MinorHeader.module.scss";
+import { matches } from "../../constants";
 
-interface PropsI {
-	background: string;
-	title: string;
+interface PropsI extends React.HTMLAttributes<HTMLDivElement> {
+	type: string | undefined;
 }
 
 const MinorHeader = (props: PropsI) => {
-	const { background, title } = props;
+	const { type, ...remainProps } = props;
+
+	if (typeof type !== "string") {
+		return <div>{"Error"}</div>;
+	}
+	const obj = matches.get(type);
+	if (typeof obj === "undefined") {
+		return <div>{"Error"}</div>;
+	}
+
 	return (
-		<article className={styles.container} style={{ backgroundImage: `url(${background})` }}>
-			<p className={styles.p}>{title}</p>
+		<article
+			{...remainProps}
+			className={styles.container}
+			style={{ backgroundImage: `url(${obj.background})` }}
+		>
+			<p className={styles.p}>{obj.title}</p>
 		</article>
 	);
 };

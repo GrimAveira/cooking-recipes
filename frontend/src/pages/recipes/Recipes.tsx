@@ -2,21 +2,15 @@ import { useParams } from "react-router-dom";
 import styles from "./Recipes.module.scss";
 import ShellWrapper from "../../hoc/ShellWrapper";
 import MinorHeader from "../../components/minorHeader/MinorHeader";
-import { translates } from "../../constants";
+import TypesBar from "../../components/typesBar/TypesBar";
 
 const RecipesBase = () => {
-	const { type } = useParams<string>();
+	const { type, subtype } = useParams();
 
-	if (typeof type !== "string") {
-		return <div>{"Error"}</div>;
-	}
-	const obj = translates.get(type);
-	if (typeof obj === "undefined") {
-		return <div>{"Error"}</div>;
-	}
 	return (
 		<main>
-			<MinorHeader background={obj.background} title={obj.title} />
+			<MinorHeader type={type} />
+			{typeof subtype === "undefined" && <TypesBar className={styles.typesBar} type={type} />}
 		</main>
 	);
 };
