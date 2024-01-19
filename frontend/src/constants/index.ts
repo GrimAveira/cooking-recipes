@@ -12,6 +12,8 @@ import brothsMinor from "./brothsMinor.png";
 import soupMinor from "./soupMinor.png";
 import drinkMinor from "./drinkMinor.png";
 import snackMinor from "./snackMinor.png";
+import cupcakeType from "./cupcakeType.svg";
+import biscuitType from "./biscuitType.svg";
 
 export const categoryCards = [
 	{ img: bakes, url: "recipes/bakes", title: "Выпечка" },
@@ -33,16 +35,83 @@ export const icons = [
 	{ title: "GitHub", url: "https://github.com/GrimAveira", svg: github },
 ];
 
-export interface translateI {
+interface SubTypesI {
 	background: string;
 	title: string;
+	url: string;
 }
 
-export const translates = new Map<string, translateI>([
-	["bakes", { background: bakesMinor, title: "Выпечка" }],
-	["desserts", { background: dessertMinor, title: "Дессерты" }],
-	["broths", { background: brothsMinor, title: "Бульоны" }],
-	["soups", { background: soupMinor, title: "Супы" }],
-	["drinks", { background: drinkMinor, title: "Напитки" }],
-	["snacks", { background: snackMinor, title: "Закуски" }],
+export interface TranslateI {
+	background: string;
+	title: string;
+	subtypes: SubTypesI[];
+}
+
+export const matches = new Map<string, TranslateI>([
+	[
+		"bakes",
+		{
+			background: bakesMinor,
+			title: "Выпечка",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
+	[
+		"desserts",
+		{
+			background: dessertMinor,
+			title: "Дессерты",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
+	[
+		"broths",
+		{
+			background: brothsMinor,
+			title: "Бульоны",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
+	[
+		"soups",
+		{
+			background: soupMinor,
+			title: "Супы",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
+	[
+		"drinks",
+		{
+			background: drinkMinor,
+			title: "Напитки",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
+	[
+		"snacks",
+		{
+			background: snackMinor,
+			title: "Закуски",
+			subtypes: [
+				{ background: biscuitType, title: "Печенье", url: "biscuits" },
+				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+			],
+		},
+	],
 ]);
