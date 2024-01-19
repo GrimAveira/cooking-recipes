@@ -1,0 +1,10 @@
+@import "../../style/variables.scss";
+.wrapper {
+	display: flex;
+	justify-content: center;
+}
+.container {
+	border: 2px solid $brick-color;
+	border-radius: 20px;
+	display: inline-flex;
+}
