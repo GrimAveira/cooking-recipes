@@ -5,22 +5,32 @@ import styles from "./Shell.module.scss";
 import Burger from "../burger/Burger";
 
 function Shell() {
-  const [show, setShow] = useState<boolean>(false);
+	const [show, setShow] =
+		useState<boolean>(false);
 
-  return (
-    <div className={styles.container}>
-      <Burger
-        title="Меню"
-        show={show}
-        className={styles.menuButton}
-        onClick={() => {
-          setShow((show: boolean) => !show);
-        }}
-      />
-      <Header />
-      <Menu show={show} />
-    </div>
-  );
+	return (
+		<div
+			className={
+				styles.container
+			}
+		>
+			<Burger
+				show={show}
+				title={"Меню"}
+				onClick={() => {
+					setShow(
+						(show: boolean) =>
+							!show,
+					);
+				}}
+				className={
+					styles.menuButton
+				}
+			/>
+			<Header />
+			<Menu show={show} />
+		</div>
+	);
 }
 
 export default Shell;

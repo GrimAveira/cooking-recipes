@@ -1,16 +1,19 @@
 @import "../../style/variables.scss";
 
-.button {
+.link {
 	background: $gradient;
 	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	cursor: pointer;
 	transition: 0.1s;
 }
-.button:hover {
+.link:hover {
 	box-shadow: 0 0 10px white;
 }
-.button:active {
+.link:active {
 	filter: brightness(70%);
 	box-shadow: none;
 }

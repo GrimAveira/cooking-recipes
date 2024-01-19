@@ -1,15 +1,38 @@
-import CategoryCards from "./components/category-cards/CategoryCards";
-import Footer from "./components/footer/Footer";
-import Shell from "./components/shell/Shell";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import Registration from "./pages/registratrion/Registration";
+import Recipes from "./pages/recipes/Recipes";
+
+const routerShell = createBrowserRouter([
+	{
+		path: "/",
+		element: <Home />,
+	},
+	{
+		path: "/login",
+		element: <Login />,
+	},
+	{
+		path: "/registration",
+		element: <Registration />,
+	},
+	{
+		path: "recipes/:type",
+		element: <Recipes />,
+	},
+	{
+		path: "recipes/:type/:subtype",
+		element: <Recipes />,
+	},
+]);
 
 function App() {
-  return (
-    <>
-      <Shell />
-      <CategoryCards />
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<RouterProvider router={routerShell} />
+		</>
+	);
 }
 
 export default App;
