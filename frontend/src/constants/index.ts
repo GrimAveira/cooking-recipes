@@ -36,27 +36,41 @@ export const icons = [
 ];
 
 interface SubTypesI {
-	background: string;
+	img: string;
 	title: string;
 	url: string;
 }
 
-export interface TranslateI {
+export interface RECIPES_TYPES_I {
 	background: string;
 	title: string;
-	subtypes: SubTypesI[];
+	subtypes?: SubTypesI[];
 }
 
-export const matches = new Map<string, TranslateI>([
+export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 	[
 		"bakes",
 		{
 			background: bakesMinor,
 			title: "Выпечка",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
+		},
+	],
+	[
+		"biscuits",
+		{
+			background: bakesMinor,
+			title: "Печенье",
+		},
+	],
+	[
+		"cupcakes",
+		{
+			background: bakesMinor,
+			title: "Кексы",
 		},
 	],
 	[
@@ -65,8 +79,8 @@ export const matches = new Map<string, TranslateI>([
 			background: dessertMinor,
 			title: "Дессерты",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
 		},
 	],
@@ -76,8 +90,8 @@ export const matches = new Map<string, TranslateI>([
 			background: brothsMinor,
 			title: "Бульоны",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
 		},
 	],
@@ -87,8 +101,8 @@ export const matches = new Map<string, TranslateI>([
 			background: soupMinor,
 			title: "Супы",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
 		},
 	],
@@ -98,8 +112,8 @@ export const matches = new Map<string, TranslateI>([
 			background: drinkMinor,
 			title: "Напитки",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
 		},
 	],
@@ -109,8 +123,8 @@ export const matches = new Map<string, TranslateI>([
 			background: snackMinor,
 			title: "Закуски",
 			subtypes: [
-				{ background: biscuitType, title: "Печенье", url: "biscuits" },
-				{ background: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Печенье", url: "biscuits" },
+				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
 			],
 		},
 	],
