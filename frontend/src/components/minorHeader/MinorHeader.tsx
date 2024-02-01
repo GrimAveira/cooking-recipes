@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MinorHeader.module.scss";
-import { matches } from "../../constants";
+import { RECIPES_TYPES } from "../../constants";
 
 interface PropsI extends React.HTMLAttributes<HTMLDivElement> {
 	type: string | undefined;
@@ -10,11 +10,11 @@ const MinorHeader = (props: PropsI) => {
 	const { type, ...remainProps } = props;
 
 	if (typeof type !== "string") {
-		return <div>{"Error"}</div>;
+		return <div>{"Error string"}</div>;
 	}
-	const obj = matches.get(type);
+	const obj = RECIPES_TYPES.get(type);
 	if (typeof obj === "undefined") {
-		return <div>{"Error"}</div>;
+		return <div>{"Error undefined"}</div>;
 	}
 
 	return (

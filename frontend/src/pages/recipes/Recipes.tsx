@@ -9,7 +9,7 @@ const RecipesBase = () => {
 
 	return (
 		<main>
-			<MinorHeader type={type} />
+			<MinorHeader type={subtype ? subtype : type} />
 			{typeof subtype === "undefined" && <TypesBar className={styles.typesBar} type={type} />}
 		</main>
 	);
