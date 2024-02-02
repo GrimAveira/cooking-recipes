@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, Post, Req, Res } from "@nestjs/common";
 import { RegistrationDTO } from "./dto/registration.dto";
 import { LoginDTO } from "./dto/login.dto";
 import { Request, Response } from "express";

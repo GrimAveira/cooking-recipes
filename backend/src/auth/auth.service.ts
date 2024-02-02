@@ -1,22 +1,25 @@
 import { Client } from "pg";
-import { Injectable, Res } from "@nestjs/common";
+import { Inject, Injectable, Res } from "@nestjs/common";
 import { InjectClient } from "nest-postgres";
 import { RegistrationDTO } from "./dto/registration.dto";
 import { LoginDTO } from "./dto/login.dto";
 import { Response } from "express";
-import * as bcrypt from "bcrypt";
+import { CryptService } from "src/crypt/crypt.service";
 
 @Injectable()
 export class AuthService {
-	constructor(@InjectClient() private readonly pg: Client) {}
+	constructor(
+		@InjectClient() private readonly pg: Client,
+		@Inject(CryptService) private readonly cryptService: CryptService,
+	) {}
 	async registration(@Res() res: Response, DTO: RegistrationDTO) {
 		try {
 			const user = await this.pg.query(`SELECT login FROM public.user WHERE login='${DTO.login}'`).catch((error) => {
 				throw error;
 			});
+			console.log(user.rows);
 			if (user.rowCount) return res.status(400).send("Пользователь с введённым логином уже зарегистрирован");
-			const salt = bcrypt.genSaltSync(7);
-			const hashPassword = bcrypt.hashSync(DTO.password, salt);
+			const hashPassword = this.cryptService.hash(DTO.password);
 			await this.pg
 				.query(
 					`INSERT INTO public.user (login, email, first_name, second_name, password) VALUES ('${DTO.login}','${DTO.email}','${DTO.firstName}','${DTO.secondName}','${hashPassword}')`,

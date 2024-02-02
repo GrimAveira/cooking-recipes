@@ -5,6 +5,7 @@ import { PostgresModule } from "nest-postgres";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
 import { DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USER } from "./constants";
+import { CryptModule } from './crypt/crypt.module';
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USER } from "
 			}),
 		}),
 		AuthModule,
+		CryptModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
