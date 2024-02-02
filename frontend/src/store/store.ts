@@ -1,0 +1,9 @@
+import { configureStore } from "@reduxjs/toolkit";
+import registrationReducer from "./reducers/registrationSlice";
+
+export const store = configureStore({
+	reducer: { registrationReducer },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
