@@ -1,17 +1,11 @@
 import InputLabel from "../../components/labelInput/InputLabel";
 import styles from "./Registration.module.scss";
 import Button from "../../components/button/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { RegistrationState, changeUserRegData } from "../../store/reducers/registrationSlice";
 import { ChangeEvent } from "react";
 
 const Registration = () => {
-	const registraionInfo = useSelector((state: RootState) => state.registrationReducer);
-	const dispatch = useDispatch();
-
 	const changeHandlerInput = (event: ChangeEvent<HTMLInputElement>) => {
-		dispatch(changeUserRegData({ name: event.target.name, value: event.target.value }));
+		// dispatch(changeUserRegData({ name: event.target.name, value: event.target.value }));
 	};
 
 	const inputs = [
@@ -69,7 +63,7 @@ const Registration = () => {
 								...inputLabel.input,
 								className: styles.input,
 								onChange: changeHandlerInput,
-								value: registraionInfo[inputLabel.input.name as keyof RegistrationState],
+								// value: registraionInfo[inputLabel.input.name as keyof RegistrationState],
 							}}
 						/>
 					);
