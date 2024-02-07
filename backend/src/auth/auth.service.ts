@@ -17,7 +17,6 @@ export class AuthService {
 			const user = await this.pg.query(`SELECT login FROM public.user WHERE login='${DTO.login}'`).catch((error) => {
 				throw error;
 			});
-			console.log(user.rows);
 			if (user.rowCount) return res.status(400).send("Пользователь с введённым логином уже зарегистрирован");
 			const hashPassword = this.cryptService.hash(DTO.password);
 			await this.pg

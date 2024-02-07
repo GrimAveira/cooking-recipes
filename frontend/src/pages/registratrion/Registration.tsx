@@ -1,11 +1,26 @@
 import InputLabel from "../../components/labelInput/InputLabel";
 import styles from "./Registration.module.scss";
 import Button from "../../components/button/Button";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import UserService from "../../api/UserService";
+
+export interface IUserData {
+	login: string;
+	password: string;
+	firstName: string;
+	secondName: string;
+}
 
 const Registration = () => {
-	const changeHandlerInput = (event: ChangeEvent<HTMLInputElement>) => {
-		// dispatch(changeUserRegData({ name: event.target.name, value: event.target.value }));
+	const [userData, setUserData] = useState<IUserData>({
+		login: "Tryed",
+		password: "213asdagf",
+		firstName: "Вася",
+		secondName: "Мирнов",
+	});
+
+	const changeUserData = (event: ChangeEvent<HTMLInputElement>) => {
+		setUserData((state: IUserData) => ({ ...state, [event.target.name]: event.target.value }));
 	};
 
 	const inputs = [
@@ -47,12 +62,18 @@ const Registration = () => {
 		},
 	];
 
-	const submitHandler = () => {};
+	const submitUserData = async (event: React.ChangeEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const response = await UserService.registration(userData);
+		console.log(response);
+	};
+
+	console.log(userData);
 
 	return (
 		<div className={styles.container}>
 			<p className={styles.p}>Регистрация</p>
-			<form className={styles.form} onSubmit={() => console.log("submit")}>
+			<form className={styles.form} onSubmit={submitUserData}>
 				{inputs.map((inputLabel) => {
 					return (
 						<InputLabel
@@ -62,13 +83,13 @@ const Registration = () => {
 							input={{
 								...inputLabel.input,
 								className: styles.input,
-								onChange: changeHandlerInput,
-								// value: registraionInfo[inputLabel.input.name as keyof RegistrationState],
+								onChange: changeUserData,
+								value: userData[inputLabel.input.name as keyof IUserData],
 							}}
 						/>
 					);
 				})}
-				<Button title="Зарегистрироваться" className={styles.regButton} />
+				<Button title="Зарегистрироваться" className={styles.regButton} type="submit" />
 			</form>
 		</div>
 	);
