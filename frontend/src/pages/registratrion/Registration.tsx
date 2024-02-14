@@ -3,6 +3,7 @@ import styles from "./Registration.module.scss";
 import Button from "../../components/button/Button";
 import { ChangeEvent, useState } from "react";
 import UserService from "../../api/UserService";
+import { useMutation } from "react-query";
 
 export interface IUserData {
 	login: string;
@@ -10,6 +11,10 @@ export interface IUserData {
 	firstName: string;
 	secondName: string;
 }
+
+const createUser = async (userData: IUserData) => {
+	return UserService.registration(userData);
+};
 
 const Registration = () => {
 	const [userData, setUserData] = useState<IUserData>({
@@ -62,10 +67,16 @@ const Registration = () => {
 		},
 	];
 
-	const submitUserData = async (event: React.ChangeEvent<HTMLFormElement>) => {
+	const mutationUser = useMutation({
+		mutationFn: createUser,
+		onSuccess(data: string) {
+			console.log(data);
+		},
+	});
+
+	const onSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const response = await UserService.registration(userData);
-		console.log(response);
+		mutationUser.mutate(userData);
 	};
 
 	console.log(userData);
@@ -73,7 +84,7 @@ const Registration = () => {
 	return (
 		<div className={styles.container}>
 			<p className={styles.p}>Регистрация</p>
-			<form className={styles.form} onSubmit={submitUserData}>
+			<form className={styles.form} onSubmit={onSubmit}>
 				{inputs.map((inputLabel) => {
 					return (
 						<InputLabel
