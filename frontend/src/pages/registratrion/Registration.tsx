@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 import { ChangeEvent, useState } from "react";
 import UserService from "../../api/UserService";
 import { useMutation } from "react-query";
+import { promiseFail, promiseSuccess } from "../../functions/toastTrigger";
 
 export interface IUserData {
 	login: string;
@@ -13,7 +14,11 @@ export interface IUserData {
 }
 
 const createUser = async (userData: IUserData) => {
-	return UserService.registration(userData);
+	try {
+		return UserService.registration(userData);
+	} catch (error) {
+		return error;
+	}
 };
 
 const Registration = () => {
@@ -69,8 +74,11 @@ const Registration = () => {
 
 	const mutationUser = useMutation({
 		mutationFn: createUser,
-		onSuccess(data: string) {
-			console.log(data);
+		onSuccess(message: string) {
+			promiseSuccess(message);
+		},
+		onError(message: string) {
+			promiseFail(message);
 		},
 	});
 
@@ -78,8 +86,6 @@ const Registration = () => {
 		event.preventDefault();
 		mutationUser.mutate(userData);
 	};
-
-	console.log(userData);
 
 	return (
 		<div className={styles.container}>
