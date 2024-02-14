@@ -6,6 +6,8 @@
 	background-position: center;
 	background-size: cover;
 
+	color: white;
+
 	height: 100vh;
 
 	overflow: hidden;
@@ -54,10 +56,17 @@
 .pReg {
 	text-align: right;
 	font-size: 20px;
-	margin-top: 155px;
-	margin-right: 15px;
+	margin-top: 152px;
+	margin-right: 17px;
 }
 .link {
 	font-size: 20px;
 	border-bottom: 1px solid white;
+
+	color: white;
+
+	transition: 0.5s;
+}
+.link:hover {
+	color: $brick-color;
 }

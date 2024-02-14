@@ -10,12 +10,12 @@ const Login = () => {
 			<form className={styles.form}>
 				<InputLabel
 					className={styles.inputForm}
-					label={"Логин"}
+					label={{ title: "Логин" }}
 					input={{ className: styles.input, name: "login", placeholder: "Введите логин" }}
 				/>
 				<InputLabel
 					className={styles.inputForm}
-					label={"Пароль"}
+					label={{ title: "Пароль" }}
 					input={{
 						className: styles.input,
 						name: "password",
