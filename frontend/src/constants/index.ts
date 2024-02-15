@@ -14,6 +14,10 @@ import drinkMinor from "./drinkMinor.png";
 import snackMinor from "./snackMinor.png";
 import cupcakeType from "./cupcakeType.svg";
 import biscuitType from "./biscuitType.svg";
+import recently from "./recently.svg";
+import favorite from "./favorite.svg";
+
+export const recipeOptions = { recently, favorite };
 
 export const categoryCards = [
 	{ img: bakes, url: "recipes/bakes", title: "Выпечка" },
