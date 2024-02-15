@@ -11,7 +11,7 @@ function SubTypeCard(props: PropsI) {
 	const { img, title, url } = props;
 
 	return (
-		<Link to={url} className={styles.container}>
+		<Link to={url} className={styles.linkContainer}>
 			<img className={styles.img} src={img} alt={title} />
 			<p className={styles.p}>{title}</p>
 		</Link>

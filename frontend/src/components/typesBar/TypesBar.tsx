@@ -19,7 +19,7 @@ const TypesBar = (props: PropsI) => {
 	}
 
 	return (
-		<div {...remainProps} className={`${styles.wrapper} ${remainProps.className}`}>
+		<div {...remainProps} className={remainProps.className}>
 			<article className={styles.container}>
 				{obj.subtypes &&
 					obj.subtypes.map((type) => {
