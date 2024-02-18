@@ -5,6 +5,8 @@ import Registration from "./pages/registratrion/Registration";
 import Recipes from "./pages/recipes/Recipes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 const routerShell = createBrowserRouter([
 	{
@@ -30,11 +32,13 @@ const routerShell = createBrowserRouter([
 ]);
 
 function App() {
+	const [isAuth, setIsAuth] = useState(false);
+
 	return (
-		<>
+		<AuthContext.Provider value={{ isAuth, setIsAuth }}>
 			<RouterProvider router={routerShell} />
 			<ToastContainer />
-		</>
+		</AuthContext.Provider>
 	);
 }
 
