@@ -7,3 +7,9 @@ export interface IInputChanges {
 	name: string;
 	value: string;
 }
+export interface IUserData {
+	login: string;
+	password: string;
+	firstName?: string;
+	secondName?: string;
+}

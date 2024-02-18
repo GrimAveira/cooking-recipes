@@ -5,17 +5,11 @@ import { ChangeEvent, useState } from "react";
 import UserService from "../../api/UserService";
 import { useMutation } from "react-query";
 import { promiseFail, promiseSuccess } from "../../functions/toastTrigger";
-
-export interface IUserData {
-	login: string;
-	password: string;
-	firstName: string;
-	secondName: string;
-}
+import { IUserData } from "../../interfaces";
 
 const createUser = async (userData: IUserData) => {
 	try {
-		return UserService.registration(userData);
+		return await UserService.registration(userData);
 	} catch (error) {
 		return error;
 	}
@@ -102,6 +96,7 @@ const Registration = () => {
 								className: styles.input,
 								onChange: changeUserData,
 								value: userData[inputLabel.input.name as keyof IUserData],
+								required: true,
 							}}
 						/>
 					);
