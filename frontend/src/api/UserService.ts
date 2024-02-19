@@ -38,16 +38,16 @@ export default class UserService {
 			}
 		}
 	}
-	// static async isAuth() {
-	// 	try {
-	// 		const response = await axios.delete("http://localhost:3000/api/auth/logout");
-	// 		return response.data;
-	// 	} catch (error) {
-	// 		if (axios.isAxiosError(error)) {
-	// 			throw error.response?.data;
-	// 		} else if (error instanceof Error) {
-	// 			throw error.message;
-	// 		}
-	// 	}
-	// }
+	static async isAuth() {
+		try {
+			const response = await axios.get("http://localhost:3000/api/auth/isAuth");
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				throw error.response?.data;
+			} else if (error instanceof Error) {
+				throw error.message;
+			}
+		}
+	}
 }

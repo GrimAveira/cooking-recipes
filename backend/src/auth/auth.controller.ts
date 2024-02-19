@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Post, Req, Res } from "@nestjs/common";
 import { RegistrationDTO } from "./dto/registration.dto";
 import { LoginDTO } from "./dto/login.dto";
 import { Request, Response } from "express";
@@ -19,5 +19,9 @@ export class AuthController {
 	@Delete("logout")
 	async logout(@Req() req: Request, @Res() res: Response) {
 		return this.authSerice.logout(req, res);
+	}
+	@Get("isAuth")
+	async isAuth(@Req() req: Request, @Res() res: Response) {
+		return this.authSerice.isAuth(req, res);
 	}
 }

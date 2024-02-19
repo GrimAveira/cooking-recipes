@@ -6,15 +6,11 @@ import { ChangeEvent, useContext, useState } from "react";
 import { useMutation } from "react-query";
 import { promiseSuccess, promiseFail } from "../../functions/toastTrigger";
 import UserService from "../../api/UserService";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, TRole } from "../../context/AuthContext";
 import { IUserData } from "../../interfaces";
 
 const authorization = async (userData: IUserData) => {
-	try {
-		return await UserService.authorization(userData);
-	} catch (error) {
-		return error;
-	}
+	return await UserService.authorization(userData);
 };
 
 const Login = () => {
@@ -24,7 +20,7 @@ const Login = () => {
 	});
 	const navigate = useNavigate();
 
-	const { setIsAuth } = useContext(AuthContext);
+	const { setIsAuth, setRole, setLogin } = useContext(AuthContext);
 
 	const changeUserData = (event: ChangeEvent<HTMLInputElement>) => {
 		setUserData((state: IUserData) => ({ ...state, [event.target.name]: event.target.value }));
@@ -53,14 +49,12 @@ const Login = () => {
 
 	const mutationUser = useMutation({
 		mutationFn: authorization,
-		onSuccess(message: string) {
-			promiseSuccess(message);
+		onSuccess(response: { login: string; role: TRole; message: string }) {
+			promiseSuccess(response.message);
 			setIsAuth(true);
+			setRole(response.role);
+			setLogin(response.login);
 			navigate("/");
-			const cookies = document.cookie.split(";");
-			cookies.forEach((cookie) => {
-				console.log(cookie.trim());
-			});
 		},
 		onError(message: string) {
 			promiseFail(message);

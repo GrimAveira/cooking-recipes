@@ -20,7 +20,7 @@ const logout = async () => {
 const Header = () => {
 	const navigate = useNavigate();
 
-	const { isAuth, setIsAuth } = useContext(AuthContext);
+	const { isAuth, setIsAuth, setLogin, setRole } = useContext(AuthContext);
 
 	const clickHandler = () => {
 		mutationUser.mutate();
@@ -31,6 +31,8 @@ const Header = () => {
 		onSuccess(message: string) {
 			promiseSuccess(message);
 			setIsAuth(false);
+			setLogin(null);
+			setRole(null);
 			navigate("/");
 		},
 		onError(message: string) {

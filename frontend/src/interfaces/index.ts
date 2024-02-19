@@ -13,3 +13,8 @@ export interface IUserData {
 	firstName?: string;
 	secondName?: string;
 }
+export interface IAuthInfo {
+	role: "1" | "2";
+	login: string;
+	message: string;
+}

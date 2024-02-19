@@ -8,11 +8,7 @@ import { promiseFail, promiseSuccess } from "../../functions/toastTrigger";
 import { IUserData } from "../../interfaces";
 
 const createUser = async (userData: IUserData) => {
-	try {
-		return await UserService.registration(userData);
-	} catch (error) {
-		return error;
-	}
+	return await UserService.registration(userData);
 };
 
 const Registration = () => {
