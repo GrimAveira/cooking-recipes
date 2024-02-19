@@ -1,8 +1,13 @@
 @import "../../style/variables.scss";
 
 .container {
-	height: 370px;
+	height: 470px;
 	padding: 10px;
+	background-color: $main-color;
+	background-image: url("../../constants/bg-footer.png");
+	background-size: cover;
+	background-position: center;
+	background-size: 60%;
 }
 .feedbackButton {
 	display: block;
@@ -10,6 +15,7 @@
 	height: 40px;
 	font-weight: 500;
 	font-size: 20px;
+	color: $brick-font-color;
 	cursor: pointer;
 	border-bottom: 2px solid $brick-color;
 }
@@ -32,6 +38,7 @@
 	width: 50px;
 }
 .lineBlock {
+	margin-top: 10%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -40,4 +47,16 @@
 	width: 70%;
 	height: 2px;
 	background: $gradient;
+}
+.leftImg {
+	position: absolute;
+	bottom: 100px;
+	left: 10%;
+	transform: rotate(-30deg);
+}
+.rightImg {
+	position: absolute;
+	bottom: 140px;
+	right: 10%;
+	transform: rotate(30deg);
 }
