@@ -133,3 +133,14 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 		},
 	],
 ]);
+
+export const TYPES_TRANSLATE = new Map<string, string>([
+	["bakes", "Выпечка"],
+	["desserts", "Дессерты"],
+	["snacks", "Закуски"],
+	["drinks", "Напитки"],
+	["soups", "Супы"],
+	["broths", "Бульоны"],
+	["biscuits", "Печенье"],
+	["cupcakes", "Кексы"],
+]);

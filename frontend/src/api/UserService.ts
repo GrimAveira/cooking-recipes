@@ -4,7 +4,10 @@ axios.defaults.withCredentials = true;
 export default class UserService {
 	static async registration(userData: IUserData) {
 		try {
-			const response = await axios.post("http://localhost:3000/api/auth/registration", userData);
+			const response = await axios.post(
+				"http://192.168.0.106:3000/api/auth/registration",
+				userData,
+			);
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -16,7 +19,7 @@ export default class UserService {
 	}
 	static async authorization(userData: IUserData) {
 		try {
-			const response = await axios.post("http://localhost:3000/api/auth/login", userData);
+			const response = await axios.post("http://192.168.0.106:3000/api/auth/login", userData);
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -28,7 +31,7 @@ export default class UserService {
 	}
 	static async logout() {
 		try {
-			const response = await axios.delete("http://localhost:3000/api/auth/logout");
+			const response = await axios.delete("http://192.168.0.106:3000/api/auth/logout");
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -40,7 +43,7 @@ export default class UserService {
 	}
 	static async isAuth() {
 		try {
-			const response = await axios.get("http://localhost:3000/api/auth/isAuth");
+			const response = await axios.get("http://192.168.0.106:3000/api/auth/isAuth");
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {

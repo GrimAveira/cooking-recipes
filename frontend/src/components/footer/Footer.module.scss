@@ -1,6 +1,7 @@
 @import "../../style/variables.scss";
 
 .container {
+	position: relative;
 	height: 470px;
 	padding: 10px;
 	background-color: $main-color;
@@ -17,6 +18,7 @@
 	font-size: 20px;
 	color: $brick-font-color;
 	cursor: pointer;
+
 	border-bottom: 2px solid $brick-color;
 }
 .about {
@@ -48,15 +50,18 @@
 	height: 2px;
 	background: $gradient;
 }
-.leftImg {
+.img {
+	pointer-events: none;
 	position: absolute;
-	bottom: 100px;
+	top: 20px;
+}
+.leftImg {
+	@extend .img;
 	left: 10%;
 	transform: rotate(-30deg);
 }
 .rightImg {
-	position: absolute;
-	bottom: 140px;
+	@extend .img;
 	right: 10%;
 	transform: rotate(30deg);
 }
