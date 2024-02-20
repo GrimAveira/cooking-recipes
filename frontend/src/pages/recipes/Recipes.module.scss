@@ -1,3 +1,10 @@
+@import "../../style/variables.scss";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .typesBar {
 	margin: 70px 0;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TypesBar.module.scss";
 import { RECIPES_TYPES } from "../../constants";
-import SubTypeCard from "../subTupyCard/SubTypeCard";
+import SubTypeCard from "../subtype-card/SubTypeCard";
 
 interface PropsI extends React.HTMLAttributes<HTMLDivElement> {
 	type?: string;
@@ -19,7 +19,7 @@ const TypesBar = (props: PropsI) => {
 	}
 
 	return (
-		<div {...remainProps} className={`${styles.wrapper} ${remainProps.className}`}>
+		<div {...remainProps} className={remainProps.className}>
 			<article className={styles.container}>
 				{obj.subtypes &&
 					obj.subtypes.map((type) => {

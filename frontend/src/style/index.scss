@@ -1,5 +1,9 @@
 @import "./variables.scss";
 
+:root {
+	position: relative;
+	background-color: $main-color;
+}
 * {
 	box-sizing: border-box;
 	font-family: $main-font;
@@ -8,7 +12,6 @@
 	border: none;
 	list-style: none;
 	text-decoration: none;
-	color: white;
 	background: none;
 	scroll-behavior: smooth;
 }
@@ -17,7 +20,9 @@ a {
 	margin: 0px;
 	padding: 0px;
 }
-:root {
-	position: relative;
-	background-color: black;
+p {
+	color: white;
+}
+button {
+	color: white;
 }

@@ -1,15 +1,17 @@
 import styles from "./Header.module.scss";
 import { logo } from "../../assets";
-import CustomLink from "../customLink/CustomLink";
+import Auth from "./Auth";
 
 const Header = () => {
 	return (
 		<header className={styles.container}>
 			<div className={styles.blur}></div>
+
+			{/*  */}
 			<a href="/" title="На главную">
 				<img className={styles.logo} src={logo} />
 			</a>
-			<CustomLink to={"/login"} title="Вход" className={styles.button} children={"Вход"} />
+			<Auth className={styles.auth} />
 		</header>
 	);
 };

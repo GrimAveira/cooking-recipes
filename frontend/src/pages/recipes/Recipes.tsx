@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import styles from "./Recipes.module.scss";
 import ShellWrapper from "../../hoc/ShellWrapper";
-import MinorHeader from "../../components/minorHeader/MinorHeader";
-import TypesBar from "../../components/typesBar/TypesBar";
+import MinorHeader from "../../components/minor-header/MinorHeader";
+import TypesBar from "../../components/types-bar/TypesBar";
+import RecipeWrapper from "../../components/recipe-cards/RecipeCards";
 
 const RecipesBase = () => {
 	const { type, subtype } = useParams();
@@ -10,7 +11,10 @@ const RecipesBase = () => {
 	return (
 		<main>
 			<MinorHeader type={subtype ? subtype : type} />
-			{typeof subtype === "undefined" && <TypesBar className={styles.typesBar} type={type} />}
+			<article className={styles.container}>
+				{typeof subtype === "undefined" && <TypesBar className={styles.typesBar} type={type} />}
+				<RecipeWrapper type={type} subtype={subtype} />
+			</article>
 		</main>
 	);
 };
