@@ -6,22 +6,22 @@ import { AuthService } from "./auth.service";
 
 @Controller("auth")
 export class AuthController {
-	constructor(private readonly authSerice: AuthService) {}
+	constructor(private readonly authService: AuthService) {}
 
 	@Post("registration")
 	async registration(@Res() res: Response, @Body() DTO: RegistrationDTO) {
-		return this.authSerice.registration(res, DTO);
+		return this.authService.registration(res, DTO);
 	}
 	@Post("login")
 	async login(@Req() req: Request, @Res() res: Response, @Body() DTO: LoginDTO) {
-		return this.authSerice.login(req, res, DTO);
+		return this.authService.login(req, res, DTO);
 	}
 	@Delete("logout")
 	async logout(@Req() req: Request, @Res() res: Response) {
-		return this.authSerice.logout(req, res);
+		return this.authService.logout(req, res);
 	}
 	@Get("isAuth")
 	async isAuth(@Req() req: Request, @Res() res: Response) {
-		return this.authSerice.isAuth(req, res);
+		return this.authService.isAuth(req, res);
 	}
 }
