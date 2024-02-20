@@ -1,45 +1,34 @@
 @import "../../style/variables.scss";
 
 .container {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 200px;
-  top: 0;
-  z-index: 15;
-  * {
-    z-index: 20;
-  }
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 180px;
+	top: 0;
+	z-index: 15;
+	* {
+		z-index: 20;
+	}
 }
 
 .blur {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: black;
-  filter: blur(100px);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: black;
+	filter: blur(100px);
 
-  z-index: 1;
+	z-index: 1;
 }
 
-.button {
-  position: absolute;
-  width: 155px;
-  height: 71px;
-  right: 5%;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 25px;
-  line-height: 29px;
-  text-align: center;
-
-  color: #ffffff;
-  cursor: pointer;
+.auth {
+	position: absolute;
+	right: 5%;
 }
 
 .logo {
-  justify-self: center;
+	justify-self: center;
 }
