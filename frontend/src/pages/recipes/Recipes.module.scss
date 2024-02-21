@@ -4,6 +4,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	background-image: url("../../constants/bg-footer.png");
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: repeat;
+	background-size: 50%;
 }
 .typesBar {
 	margin: 70px 0;

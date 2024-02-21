@@ -1,6 +1,8 @@
 @import "../../style/variables.scss";
 
 .container {
+	border: 1px solid $blue;
+
 	position: relative;
 
 	display: flex;
@@ -8,8 +10,6 @@
 	justify-content: flex-end;
 
 	overflow: hidden;
-
-	border: 2px solid $brick-color;
 
 	border-radius: 25px;
 
@@ -24,6 +24,11 @@
 		z-index: 3;
 		position: relative;
 	}
+
+	transition: 0.25s;
+}
+.container:hover {
+	border: 1px solid $brick-color;
 }
 .container:hover .img {
 	transform: scale(125%);
@@ -44,8 +49,10 @@
 .minorInfo {
 	display: flex;
 	align-items: center;
+
 	margin: 10px;
 	margin-bottom: 4px;
+
 	font-size: 16px;
 	font-weight: 400;
 }
@@ -70,13 +77,18 @@
 	fill: $brick-color;
 }
 .majorInfo {
-	border-top: 2px solid $brick-color;
+	border-top: 1px solid $blue;
 
 	height: 140px;
 
 	padding: 10px;
 
 	backdrop-filter: blur(3px);
+
+	transition: 0.25s;
+}
+.container:hover .majorInfo {
+	border-top: 1px solid $brick-color;
 }
 .title {
 	font-weight: 500;
