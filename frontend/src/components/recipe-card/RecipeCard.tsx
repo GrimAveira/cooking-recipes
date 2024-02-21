@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom";
 import { IRecipe } from "../../interfaces";
 import styles from "./RecipeCard.module.scss";
+import { TYPES_TRANSLATE_RU_ENG } from "../../constants";
 
 const RecipeCard = (props: IRecipe) => {
-	const { id, description, title, active_cooking_time, calories_number, image_path } = props;
+	const {
+		id,
+		description,
+		title,
+		active_cooking_time,
+		calories_number,
+		image_path,
+		type,
+		subtype,
+	} = props;
 
 	return (
-		<Link to={`${id}`} className={styles.container}>
+		<Link
+			to={`/recipes/${TYPES_TRANSLATE_RU_ENG.get(type)}/${TYPES_TRANSLATE_RU_ENG.get(subtype)}/${id}`}
+			className={styles.container}
+		>
 			<img
 				src={`http://192.168.0.106:3000/api/image/${image_path}`}
 				alt=""
