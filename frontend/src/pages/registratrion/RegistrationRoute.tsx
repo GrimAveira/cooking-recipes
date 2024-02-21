@@ -1,26 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/button/Button";
 import InputLabel from "../../components/labelInput/InputLabel";
-import styles from "./Login.module.scss";
-import { ChangeEvent, useContext, useState } from "react";
-import { useMutation } from "react-query";
-import { promiseSuccess, promiseFail } from "../../functions/toastTrigger";
+import styles from "./RegistrationRoute.module.scss";
+import Button from "../../components/button/Button";
+import { ChangeEvent, useState } from "react";
 import UserService from "../../api/UserService";
-import { AuthContext, TRole } from "../../context/AuthContext";
+import { useMutation } from "react-query";
+import { promiseFail, promiseSuccess } from "../../functions/toastTrigger";
 import { IUserData } from "../../interfaces";
 
-const authorization = async (userData: IUserData) => {
-	return await UserService.authorization(userData);
+const createUser = async (userData: IUserData) => {
+	return await UserService.registration(userData);
 };
 
-const Login = () => {
+const RegistrationRoute = () => {
 	const [userData, setUserData] = useState<IUserData>({
 		login: "Tryed",
 		password: "213asdagf",
+		firstName: "Вася",
+		secondName: "Мирнов",
 	});
-	const navigate = useNavigate();
-
-	const { setIsAuth, setRole, setLogin } = useContext(AuthContext);
 
 	const changeUserData = (event: ChangeEvent<HTMLInputElement>) => {
 		setUserData((state: IUserData) => ({ ...state, [event.target.name]: event.target.value }));
@@ -37,24 +34,38 @@ const Login = () => {
 				pattern: "^[A-Za-z0-9]{3,16}$",
 			},
 		},
-		{
-			label: { title: "Пароль" },
-			input: { name: "password", type: "password", placeholder: "Введите пароль" },
-		},
 		// {
 		// 	label: { title: "Почта" },
 		// 	input: { name: "mail", type: "email", placeholder: "Введите почту" },
 		// },
+		{
+			label: { title: "Пароль" },
+			input: { name: "password", type: "password", placeholder: "Введите пароль" },
+		},
+		{
+			label: { title: "Имя" },
+			input: {
+				name: "firstName",
+				placeholder: "Введите имя",
+				title: "Имя должно состоять из 1-30 букв и не может включать специальные символы",
+				pattern: "^[А-Яа-я]{1,30}$",
+			},
+		},
+		{
+			label: { title: "Фамилия" },
+			input: {
+				name: "secondName",
+				placeholder: "Введите фамилию",
+				title: "Фамилия должна состоять из 1-30 букв и не может включать специальные символы",
+				pattern: "^[А-Яа-я]{1,30}$$",
+			},
+		},
 	];
 
 	const mutationUser = useMutation({
-		mutationFn: authorization,
-		onSuccess(response: { login: string; role: TRole; message: string }) {
-			promiseSuccess(response.message);
-			setIsAuth(true);
-			setRole(response.role);
-			setLogin(response.login);
-			navigate("/");
+		mutationFn: createUser,
+		onSuccess(message: string) {
+			promiseSuccess(message);
 		},
 		onError(message: string) {
 			promiseFail(message);
@@ -65,9 +76,10 @@ const Login = () => {
 		event.preventDefault();
 		mutationUser.mutate(userData);
 	};
+
 	return (
 		<div className={styles.container}>
-			<p className={styles.p}>Вход</p>
+			<p className={styles.p}>Регистрация</p>
 			<form className={styles.form} onSubmit={onSubmit}>
 				{inputs.map((inputLabel) => {
 					return (
@@ -85,16 +97,10 @@ const Login = () => {
 						/>
 					);
 				})}
-				<Button title="Войти" className={styles.enterButton} />
-				<p className={styles.pReg}>
-					{"У вас ещё нет аккаунта? "}
-					<Link to="/registration" className={styles.link}>
-						Зарегистрироваться
-					</Link>
-				</p>
+				<Button title="Зарегистрироваться" className={styles.regButton} type="submit" />
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default RegistrationRoute;

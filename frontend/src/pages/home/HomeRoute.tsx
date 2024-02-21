@@ -1,8 +1,8 @@
 import ShellWrapper from "../../hoc/ShellWrapper";
 import CategoryCards from "../../components/category-cards/CategoryCards";
 
-const Home = () => {
+const HomeRoute = () => {
 	return ShellWrapper(CategoryCards);
 };
 
-export default Home;
+export default HomeRoute;

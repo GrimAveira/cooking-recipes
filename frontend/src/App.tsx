@@ -1,8 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/login/Login";
-import Home from "./pages/home/Home";
-import Registration from "./pages/registratrion/Registration";
-import Recipes from "./pages/recipes/Recipes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
@@ -11,27 +7,35 @@ import UserService from "./api/UserService";
 import { useMutation } from "react-query";
 import { promiseFail } from "./functions/toastTrigger";
 import { IAuthInfo } from "./interfaces/index";
+import HomeRoute from "./pages/home/HomeRoute";
+import LoginRoute from "./pages/login/LoginRoute";
+import RegistrationRoute from "./pages/registratrion/RegistrationRoute";
+import RecipesRoute from "./pages/recipes/RecipesRoute";
 
 const routerShell = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: <HomeRoute />,
 	},
 	{
 		path: "/login",
-		element: <Login />,
+		element: <LoginRoute />,
 	},
 	{
 		path: "/registration",
-		element: <Registration />,
+		element: <RegistrationRoute />,
 	},
 	{
 		path: "recipes/:type",
-		element: <Recipes />,
+		element: <RecipesRoute />,
 	},
 	{
 		path: "recipes/:type/:subtype",
-		element: <Recipes />,
+		element: <RecipesRoute />,
+	},
+	{
+		path: "recipes/:type/:subtype/:id",
+		element: <RecipesRoute />,
 	},
 ]);
 
