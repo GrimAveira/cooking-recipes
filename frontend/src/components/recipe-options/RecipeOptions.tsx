@@ -1,8 +1,9 @@
 import { recipeOptions } from "../../constants";
+import { options } from "../recipe-cards/RecipeCards";
 import styles from "./RecipeOptions.module.scss";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-	setFilter: React.Dispatch<React.SetStateAction<string>>;
+	setFilter: React.Dispatch<React.SetStateAction<options>>;
 }
 
 const RecipeOptions = (props: IProps) => {

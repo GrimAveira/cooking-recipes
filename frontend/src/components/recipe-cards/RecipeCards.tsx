@@ -8,9 +8,7 @@ import { TYPES_TRANSLATE } from "../../constants";
 import { IRecipe } from "../../interfaces";
 
 const filterRecipe = (array: IRecipe[], type: string, subtype?: string) => {
-	console.log("join", type, subtype, TYPES_TRANSLATE.get(type));
 	let filteredArray = [...array];
-
 	if (subtype && TYPES_TRANSLATE.get(subtype)) {
 		filteredArray = filteredArray.filter(
 			(recipe) => recipe.subtype === TYPES_TRANSLATE.get(subtype),
@@ -21,11 +19,19 @@ const filterRecipe = (array: IRecipe[], type: string, subtype?: string) => {
 	return filteredArray;
 };
 
+function sortByOption(array: IRecipe[], filter: options) {
+	if (filter === "popular") array.sort((a, b) => b.rating - a.rating);
+	else if (filter === "recently")
+		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
+	return array;
+}
+
+export type options = "popular" | "recently";
+
 const RecipesWrapper = (props: { type?: string; subtype?: string }) => {
 	const { type, subtype } = props;
 
-	const [filter, setFilter] = useState("popular");
-
+	const [filter, setFilter] = useState<options>("popular");
 	const [handledRecipes, setHandledRecipes] = useState<IRecipe[]>([]);
 
 	const { isPending, error, data } = useQuery({
@@ -36,18 +42,14 @@ const RecipesWrapper = (props: { type?: string; subtype?: string }) => {
 	});
 
 	useEffect(() => {
-		if (data && type) setHandledRecipes(filterRecipe(data, type, subtype));
-	}, [data, subtype, type]);
-
-	// type options = "popular" | "recently";
-
-	// function sortByOption(array: Array<string>, option: options) {
-	// 	return array.filter((elem) => elem === option);
-	// }
+		if (data && type) {
+			setHandledRecipes(sortByOption(filterRecipe(data, type, subtype), filter));
+		}
+	}, [data, subtype, type, filter]);
 
 	return (
 		<>
-			<p className={styles.recipeCount}>{`Всего найдено рецептов: ${223}`}</p>
+			<p className={styles.recipeCount}>{`Всего найдено рецептов: ${handledRecipes.length}`}</p>
 			<RecipeOptions setFilter={setFilter} />
 			<div className={styles.divLine} />
 			<div className={styles.containerCards}>
