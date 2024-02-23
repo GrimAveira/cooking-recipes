@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IRecipe } from "../../interfaces";
 import styles from "./RecipeCard.module.scss";
-import { TYPES_TRANSLATE_RU_ENG } from "../../constants";
+import { TYPES_TRANSLATE_RU_ENG, hostIp } from "../../constants";
 
 const RecipeCard = (props: IRecipe) => {
 	const {
@@ -20,9 +20,10 @@ const RecipeCard = (props: IRecipe) => {
 			to={`/recipes/${TYPES_TRANSLATE_RU_ENG.get(type)}/${TYPES_TRANSLATE_RU_ENG.get(subtype)}/${id}`}
 			className={styles.container}
 		>
-			<img
-				src={`http://192.168.0.106:3000/api/image/${image_path}`}
-				alt=""
+			<div
+				style={{
+					backgroundImage: `url('http://${hostIp}:3000/api/image/${image_path}')`,
+				}}
 				className={styles.img}
 			/>
 			<svg
@@ -32,10 +33,7 @@ const RecipeCard = (props: IRecipe) => {
 				viewBox="0 0 28 36"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				onClick={(event) => {
-					event.preventDefault();
-					console.log(1);
-				}}
+				onClick={(event) => event.preventDefault()}
 			>
 				<path
 					d="M21.7778 0H6.2222C4.51108 0 3.11108 1.8 3.11108 4V36L14 30L24.8889 36V4C24.8889 1.8 23.4889 0 21.7778 0Z"

@@ -5,7 +5,7 @@ import RecipeCard from "../recipe-card/RecipeCard";
 import { IRecipe } from "../../interfaces";
 
 function sortByOption(array: IRecipe[], sortOption: options) {
-	if (sortOption === "popular") array.sort((a, b) => b.rating - a.rating);
+	if (sortOption === "popular") array.sort((a, b) => Number(b.rating) - Number(a.rating));
 	else if (sortOption === "recently")
 		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
 	return array;

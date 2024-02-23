@@ -19,7 +19,7 @@ export interface IAuthInfo {
 	message: string;
 }
 export interface IRecipe {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
 	creation_date: string;
@@ -27,14 +27,24 @@ export interface IRecipe {
 	active_cooking_time: string;
 	complexity: string;
 	storage_time: string;
-	sevings_number: number;
-	calories_number: number;
-	score_number: number;
-	rating: number;
+	servings_number: string;
+	calories_number: string;
+	score_number: string;
+	rating: string;
 	image_path: string;
 	first_name: string;
 	second_name: string;
 	kitchen: string;
 	type: string;
 	subtype: string;
+}
+export interface IData {
+	id: string;
+	name: string;
+}
+export interface IIngredients {
+	recipe: string;
+	name: string;
+	notation: string;
+	quantity: string;
 }
