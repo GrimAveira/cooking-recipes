@@ -154,3 +154,6 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Печенье", "biscuits"],
 	["Кексы", "cupcakes"],
 ]);
+
+export const hostIp = "192.168.0.106";
+// 192.168.0.106
