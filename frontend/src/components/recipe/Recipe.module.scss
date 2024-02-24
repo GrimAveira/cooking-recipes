@@ -1,0 +1,166 @@
+@import "../../style/variables.scss";
+
+.container {
+	width: 100%;
+
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.title {
+	color: white;
+
+	font-family: "Marck Script";
+	font-size: 60px;
+
+	margin: 30px 0;
+}
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	width: 900px;
+
+	border-bottom: 1px solid $brick-color;
+}
+.userContainer {
+	display: flex;
+	align-items: center;
+
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+.options {
+	display: flex;
+}
+.button {
+	margin-left: 40px;
+
+	height: 40px;
+	width: 160px;
+
+	display: flex;
+	align-items: center;
+
+	font-size: 20px;
+
+	cursor: pointer;
+}
+.buttonText {
+	margin-left: 10px;
+}
+p {
+	transition: 0.25s;
+}
+path {
+	transition: 0.25s;
+}
+.button:hover {
+	p {
+		color: $brick-color;
+	}
+	path {
+		fill: $brick-color;
+	}
+}
+.button:active {
+	p {
+		color: $second-white;
+	}
+	path {
+		fill: $second-white;
+	}
+}
+.img {
+	position: relative;
+
+	margin: 15px 0;
+
+	border-radius: 20px;
+
+	height: 600px;
+	width: 900px;
+
+	background-size: cover;
+	background-position: center;
+}
+.totalTime {
+	position: absolute;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	left: 30px;
+	bottom: 30px;
+
+	font-size: 30px;
+}
+.clockSvg {
+	margin-right: 10px;
+}
+.minorInfo {
+	width: 900px;
+
+	margin: 10px;
+	padding: 0 20px;
+
+	display: flex;
+	justify-content: space-between;
+
+	font-size: 18px;
+}
+.minorInfoItem {
+	border-bottom: 1px solid $brick-color;
+}
+.description {
+	width: 900px;
+
+	font-size: 16px;
+
+	margin: 10px;
+}
+.ingTable {
+	width: 900px;
+
+	margin: 10px;
+	padding: 10px;
+}
+.ingTitle {
+	font-size: 24px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.ingSvg {
+	margin-right: 10px;
+}
+.addInfoTable {
+	width: 900px;
+	margin: 10px;
+}
+.AddInfoTitle {
+	font-size: 24px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.addInfoContent {
+	display: flex;
+
+	justify-content: space-between;
+}
+.addInfoColumn {
+	margin: 10px;
+}
+.enjoy {
+	margin: 10px 0;
+
+	font-size: 60px;
+	font-family: "Marck Script";
+}
