@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import styles from "./Comments.module.scss";
-import CommentService from "../../api/CommentSerivce";
+import CommentService from "../../api/CommentService";
 import Text from "../text/Text";
 import UserInfo from "../user-info/UserInfo";
 import RecipeTitle from "../recipe-title/RecipeTitle";
