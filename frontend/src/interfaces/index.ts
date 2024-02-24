@@ -48,3 +48,9 @@ export interface IIngredients {
 	notation: string;
 	quantity: string;
 }
+export interface IComment {
+	recipe: string;
+	description: string;
+	first_name: string;
+	second_name: string;
+}
