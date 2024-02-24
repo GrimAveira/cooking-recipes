@@ -12,10 +12,13 @@ import { IngredientModule } from "./ingredient/ingredient.module";
 import { IngredientController } from "./ingredient/ingredient.controller";
 import { LoggerMiddleware } from "./middleware/isAuth.middleware";
 import { RecipeController } from "./recipe/recipe.controller";
-import { CommentModule } from './comment/comment.module';
+import { CommentModule } from "./comment/comment.module";
+import { ScheduleModule } from "@nestjs/schedule";
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
 	imports: [
+		ScheduleModule.forRoot(),
 		ConfigModule.forRoot(),
 		PostgresModule.forRootAsync({
 			useFactory: () => ({
@@ -32,6 +35,7 @@ import { CommentModule } from './comment/comment.module';
 		ImageModule,
 		IngredientModule,
 		CommentModule,
+		TasksModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
