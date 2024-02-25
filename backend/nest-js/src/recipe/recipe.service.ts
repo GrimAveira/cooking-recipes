@@ -16,4 +16,18 @@ export class RecipeService {
 			return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
+	async updateRating(comments: { [key: string]: number }) {
+		try {
+			for (const prop in comments) {
+				const prevRating = await this.pg.query<{ rating: string }>(
+					`SELECT rating FROM public.recipe WHERE id = '${prop}'`,
+				);
+				this.pg.query(
+					`UPDATE public.recipe SET rating = '${Number(prevRating.rows[0].rating) + comments[prop]}' WHERE id = '${prop}'`,
+				);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }

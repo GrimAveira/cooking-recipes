@@ -14,7 +14,9 @@ import { LoggerMiddleware } from "./middleware/isAuth.middleware";
 import { RecipeController } from "./recipe/recipe.controller";
 import { CommentModule } from "./comment/comment.module";
 import { ScheduleModule } from "@nestjs/schedule";
-import { TasksModule } from './tasks/tasks.module';
+import { TasksModule } from "./tasks/tasks.module";
+import { SentimentModule } from "./sentiment/sentiment.module";
+import { RatingModule } from "./rating/rating.module";
 
 @Module({
 	imports: [
@@ -36,6 +38,8 @@ import { TasksModule } from './tasks/tasks.module';
 		IngredientModule,
 		CommentModule,
 		TasksModule,
+		SentimentModule,
+		RatingModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
