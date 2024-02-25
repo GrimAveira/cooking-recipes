@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "cd frontend && npm run dev"
+    "backend:nest": "cd backend && cd nest-js && npm run start:dev",
+    "backend:fast": "cd backend && cd fast-api && python -m uvicorn main:app",
+    "frontend": "cd frontend && npm run dev -- --host"
   },
   "author": "",
   "license": "ISC",
