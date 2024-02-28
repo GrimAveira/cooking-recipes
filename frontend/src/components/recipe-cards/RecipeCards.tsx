@@ -26,7 +26,7 @@ const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipe[
 	return (
 		<>
 			<p className={styles.recipeCount}>{`Всего найдено рецептов: ${recipes?.length}`}</p>
-			<RecipeOptions setFilter={setSortOption} />
+			<RecipeOptions className={styles.options} setFilter={setSortOption} />
 			<div className={styles.divLine} />
 			<div className={styles.containerCards}>
 				{sortedRecipes?.map((recipe) => {

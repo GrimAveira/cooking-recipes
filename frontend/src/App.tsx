@@ -1,6 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { AuthContext, TLogin, TRole } from "./context/AuthContext";
 import UserService from "./api/UserService";
@@ -11,6 +9,9 @@ import HomeRoute from "./pages/home/HomeRoute";
 import LoginRoute from "./pages/login/LoginRoute";
 import RegistrationRoute from "./pages/registratrion/RegistrationRoute";
 import RecipesRoute from "./pages/recipes/RecipesRoute";
+import CreateRoute from "./pages/create/CreateRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const routerShell = createBrowserRouter([
 	{
@@ -36,6 +37,10 @@ const routerShell = createBrowserRouter([
 	{
 		path: "recipes/:type/:subtype/:id",
 		element: <RecipesRoute />,
+	},
+	{
+		path: "create",
+		element: <CreateRoute />,
 	},
 ]);
 

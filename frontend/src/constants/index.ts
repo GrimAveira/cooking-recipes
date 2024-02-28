@@ -29,9 +29,10 @@ export const categoryCards = [
 ];
 
 export const titles = [
-	{ title: "ИЗБРАННОЕ", url: "favourites" },
-	{ title: "ЛИЧНЫЙ КАБИНЕТ", url: "lk" },
-	{ title: "О САЙТЕ", url: "about" },
+	{ title: "Избранное", url: "/favourites" },
+	{ title: "Личный кабинет", url: "/lk" },
+	{ title: "О сайте", url: "/about" },
+	{ title: "Добавить рецепт", url: "/create" },
 ];
 
 export const icons = [
@@ -156,4 +157,4 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 ]);
 
 export const hostIp = "192.168.0.106";
-// 192.168.0.106
+// 10.60.14.170
