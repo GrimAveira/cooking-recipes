@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IRecipe } from "../../interfaces";
+import { IRecipeFetch } from "../../interfaces";
 import styles from "./Recipe.module.scss";
 import { hostIp } from "../../constants";
 import IngredientService from "../../api/IngredientService";
@@ -11,12 +11,12 @@ import RecipeTitle from "../recipe-title/RecipeTitle";
 import Comments from "../comments/Comments";
 import Loader from "../loader/Loader";
 
-const Recipe = (props: { recipes: IRecipe[]; id: string }) => {
+const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 	const { recipes, id } = props;
 
-	const [recipe, setRecipe] = useState<IRecipe>();
+	const [recipe, setRecipe] = useState<IRecipeFetch>();
 
-	const { isLoading, data } = useQuery({
+	const { isLoading, data: ingredients } = useQuery({
 		queryKey: ["ingredients"],
 		queryFn: () => {
 			return IngredientService.getByRecipe(id);
@@ -230,7 +230,7 @@ const Recipe = (props: { recipes: IRecipe[]; id: string }) => {
 						</svg>
 					</RecipeTitle>
 					<ul>
-						{data?.map((ingredient) => (
+						{ingredients?.map((ingredient) => (
 							<IngredientLI
 								key={ingredient.name}
 								name={ingredient.name}

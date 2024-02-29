@@ -3,10 +3,10 @@ import RecipeService from "../../api/RecipeService";
 import RecipeCards from "../recipe-cards/RecipeCards";
 import Recipe from "../recipe/Recipe";
 import { useEffect, useState } from "react";
-import { IRecipe } from "../../interfaces";
+import { IRecipeFetch } from "../../interfaces";
 import { TYPES_TRANSLATE_ENG_RU } from "../../constants";
 
-const filterRecipe = (array: IRecipe[], type: string, subtype?: string) => {
+const filterRecipe = (array: IRecipeFetch[], type: string, subtype?: string) => {
 	let filteredArray = [...array];
 	if (subtype && TYPES_TRANSLATE_ENG_RU.get(subtype)) {
 		filteredArray = filteredArray.filter(
@@ -23,7 +23,7 @@ const filterRecipe = (array: IRecipe[], type: string, subtype?: string) => {
 const Recipes = (props: { id?: string; type?: string; subtype?: string }) => {
 	const { id, type, subtype } = props;
 
-	const [filteredRecipes, setFilteredRecipes] = useState<IRecipe[]>([]);
+	const [filteredRecipes, setFilteredRecipes] = useState<IRecipeFetch[]>([]);
 
 	const { isPending, error, data } = useQuery({
 		queryKey: ["recipes"],

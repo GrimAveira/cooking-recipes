@@ -18,7 +18,7 @@ export interface IAuthInfo {
 	login: string;
 	message: string;
 }
-export interface IRecipe {
+export interface IRecipeFetch {
 	id: string;
 	title: string;
 	description: string;
@@ -53,4 +53,8 @@ export interface IComment {
 	description: string;
 	first_name: string;
 	second_name: string;
+}
+export interface IOptions {
+	value: string;
+	title: string;
 }
