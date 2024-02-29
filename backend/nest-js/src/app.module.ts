@@ -17,6 +17,14 @@ import { ScheduleModule } from "@nestjs/schedule";
 import { TasksModule } from "./tasks/tasks.module";
 import { SentimentModule } from "./sentiment/sentiment.module";
 import { RatingModule } from "./rating/rating.module";
+import { LikeModule } from './like/like.module';
+import { BookmarkModule } from './bookmark/bookmark.module';
+import { TemporarilyScoringController } from './temporarily_scoring/temporarily_scoring.controller';
+import { TemporarilyScoringService } from './temporarily_scoring/temporarily_scoring.service';
+import { TemporarilyScoringModule } from './temporarily_scoring/temporarily_scoring.module';
+import { TypeModule } from './type/type.module';
+import { SubtypeModule } from './subtype/subtype.module';
+import { KitchenModule } from './kitchen/kitchen.module';
 
 @Module({
 	imports: [
@@ -40,9 +48,15 @@ import { RatingModule } from "./rating/rating.module";
 		TasksModule,
 		SentimentModule,
 		RatingModule,
+		LikeModule,
+		BookmarkModule,
+		TemporarilyScoringModule,
+		TypeModule,
+		SubtypeModule,
+		KitchenModule,
 	],
-	controllers: [AppController],
-	providers: [AppService],
+	controllers: [AppController, TemporarilyScoringController],
+	providers: [AppService, TemporarilyScoringService],
 })
 export class AppModule {
 	configure(consumer: MiddlewareConsumer) {
