@@ -42,7 +42,7 @@ export interface IData {
 	id: string;
 	name: string;
 }
-export interface IIngredients {
+export interface IIngredientsFetch {
 	recipe: string;
 	name: string;
 	notation: string;
@@ -57,4 +57,38 @@ export interface IComment {
 export interface IOptions {
 	value: string;
 	title: string;
+}
+export interface IDataFetch {
+	id: string;
+	name: string;
+}
+export interface ICookingStage {
+	stageId: number;
+	stageTitle: string;
+	description: string;
+}
+export interface IRecipe {
+	login: string;
+	title: string;
+	description: string;
+	total_cooking_time: string;
+	active_cooking_time: string;
+	complexity: string;
+	storage_time: string;
+	servings_number: string;
+	calories_number: string;
+	image?: FormData;
+	kitchen: string;
+	type: string;
+	subtype: string;
+}
+export interface IClassification {
+	type: string;
+	subtype: string;
+}
+export interface IIngredient {
+	ingredientId: number;
+	ingredient: string;
+	notation: string;
+	quantity: string;
 }

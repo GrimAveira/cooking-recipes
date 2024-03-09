@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import RecipeOptions from "../recipe-options/RecipeOptions";
 import styles from "./RecipeCards.module.scss";
 import RecipeCard from "../recipe-card/RecipeCard";
-import { IRecipe } from "../../interfaces";
+import { IRecipeFetch } from "../../interfaces";
 
-function sortByOption(array: IRecipe[], sortOption: options) {
+function sortByOption(array: IRecipeFetch[], sortOption: options) {
 	if (sortOption === "popular") array.sort((a, b) => Number(b.rating) - Number(a.rating));
 	else if (sortOption === "recently")
 		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
@@ -13,11 +13,11 @@ function sortByOption(array: IRecipe[], sortOption: options) {
 
 export type options = "popular" | "recently";
 
-const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipe[] }) => {
+const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipeFetch[] }) => {
 	const { recipes } = props;
 
 	const [sortOption, setSortOption] = useState<options>("popular");
-	const [sortedRecipes, setSortedRecipes] = useState<IRecipe[]>([]);
+	const [sortedRecipes, setSortedRecipes] = useState<IRecipeFetch[]>([]);
 
 	useEffect(() => {
 		setSortedRecipes(sortByOption(recipes, sortOption));

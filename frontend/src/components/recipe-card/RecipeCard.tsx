@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { IRecipe } from "../../interfaces";
+import { IRecipeFetch } from "../../interfaces";
 import styles from "./RecipeCard.module.scss";
 import { TYPES_TRANSLATE_RU_ENG, hostIp } from "../../constants";
 
-const RecipeCard = (props: IRecipe) => {
+const RecipeCard = (props: IRecipeFetch) => {
 	const {
 		id,
 		description,

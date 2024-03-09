@@ -157,4 +157,6 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 ]);
 
 export const hostIp = "192.168.0.106";
-// 10.60.14.170
+//192.168.0.106
+//10.60.14.170 internet?
+//192.168.14.163

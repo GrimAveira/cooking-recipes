@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
-export type TRole = "1" | "2" | null;
-export type TLogin = string | null;
+export type TRole = "1" | "2" | "";
+export type TLogin = string | "";
 
 export interface AuthContextType {
 	isAuth: boolean;
@@ -14,8 +14,8 @@ export interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType>({
 	isAuth: false,
-	role: null,
-	login: null,
+	role: "",
+	login: "",
 	setIsAuth: () => {},
 	setRole: () => {},
 	setLogin: () => {},

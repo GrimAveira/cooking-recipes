@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IData, IIngredients } from "../interfaces";
+import { IData, IIngredientsFetch } from "../interfaces";
 import { hostIp } from "../constants";
 
 export default class IngredientService {
@@ -17,7 +17,7 @@ export default class IngredientService {
 	}
 	static async getByRecipe(recipeId: string) {
 		try {
-			const response = await axios.get<IIngredients[]>(
+			const response = await axios.get<IIngredientsFetch[]>(
 				`http://${hostIp}:3000/api/ingredient/${recipeId}`,
 			);
 			return response.data;

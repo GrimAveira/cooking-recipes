@@ -27,19 +27,19 @@ const routerShell = createBrowserRouter([
 		element: <RegistrationRoute />,
 	},
 	{
-		path: "recipes/:type",
+		path: "/recipes/:type",
 		element: <RecipesRoute />,
 	},
 	{
-		path: "recipes/:type/:subtype",
+		path: "/recipes/:type/:subtype",
 		element: <RecipesRoute />,
 	},
 	{
-		path: "recipes/:type/:subtype/:id",
+		path: "/recipes/:type/:subtype/:id",
 		element: <RecipesRoute />,
 	},
 	{
-		path: "create",
+		path: "/create",
 		element: <CreateRoute />,
 	},
 ]);
@@ -51,8 +51,8 @@ const checkIsAuth = async () => {
 
 function App() {
 	const [isAuth, setIsAuth] = useState(false);
-	const [role, setRole] = useState<TRole>(null);
-	const [login, setLogin] = useState<TLogin>(null);
+	const [role, setRole] = useState<TRole>("");
+	const [login, setLogin] = useState<TLogin>("");
 
 	const mutationAuth = useMutation({
 		mutationFn: checkIsAuth,
