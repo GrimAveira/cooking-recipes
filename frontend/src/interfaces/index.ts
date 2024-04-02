@@ -92,3 +92,8 @@ export interface IIngredient {
 	notation: string;
 	quantity: string;
 }
+export interface ICommentAdd {
+	recipe: string;
+	user: string;
+	description: string;
+}

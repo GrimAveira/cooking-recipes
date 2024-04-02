@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IRecipeFetch } from "../../interfaces";
 import styles from "./Recipe.module.scss";
 import { hostIp } from "../../constants";
@@ -12,12 +12,16 @@ import Comments from "../comments/Comments";
 import Loader from "../loader/Loader";
 import ModalComment from "../modal-comment/ModalComment";
 import Button from "../button/Button";
+import { AuthContext } from "../../context/AuthContext";
+import { promiseFail } from "../../functions/toastTrigger";
 
 const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 	const { recipes, id } = props;
 
 	const [recipe, setRecipe] = useState<IRecipeFetch>();
 	const [modalActive, setModalActive] = useState<boolean>(false);
+
+	const { isAuth } = useContext(AuthContext);
 
 	const { isLoading, data: ingredients } = useQuery({
 		queryKey: ["ingredients", id],
@@ -81,7 +85,12 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 						</p>
 					</div>
 					<div className={styles.options}>
-						<button className={styles.button}>
+						<button
+							className={styles.button}
+							onClick={() => {
+								if (!isAuth) promiseFail("Вы не вошли в систему");
+							}}
+						>
 							<svg
 								className={styles.svg}
 								width="28"
@@ -98,7 +107,12 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 							</svg>
 							<p className={styles.buttonText}>В избранное</p>
 						</button>
-						<button className={styles.button}>
+						<button
+							className={styles.button}
+							onClick={() => {
+								if (!isAuth) promiseFail("Вы не вошли в систему");
+							}}
+						>
 							<svg
 								width="35"
 								height="35"
@@ -336,10 +350,12 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 				<p className={styles.enjoy}>Приятного аппетита!</p>
 				<ModalComment active={modalActive} setActive={setModalActive} />
 				<Button
+					className={styles.commentButton}
 					onClick={() => {
-						setModalActive(true);
+						if (!isAuth) promiseFail("Вы не вошли в систему");
+						else setModalActive(true);
 					}}
-					title="Написать комментарий"
+					title="Оставить отзыв!"
 				/>
 				<div className={styles.comments}></div>
 				<Comments id={id} />
