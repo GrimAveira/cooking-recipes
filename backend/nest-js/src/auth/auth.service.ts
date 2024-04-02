@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import { Inject, Injectable, Req, Res } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectClient } from "nest-postgres";
 import { RegistrationDTO } from "./dto/registration.dto";
 import { LoginDTO } from "./dto/login.dto";
@@ -13,7 +13,7 @@ export class AuthService {
 		@InjectClient() private readonly pg: Client,
 		@Inject(CryptService) private readonly cryptService: CryptService,
 	) {}
-	async registration(@Res() res: Response, DTO: RegistrationDTO) {
+	async registration(res: Response, DTO: RegistrationDTO) {
 		try {
 			const user = await this.pg.query(`SELECT login FROM public.user WHERE login='${DTO.login}'`).catch((error) => {
 				throw error;
@@ -33,7 +33,7 @@ export class AuthService {
 			return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
-	async login(@Req() req: Request, @Res() res: Response, DTO: LoginDTO) {
+	async login(res: Response, DTO: LoginDTO) {
 		try {
 			const user = await this.pg.query(`SELECT * FROM public.user WHERE login='${DTO.login}'`).catch((error) => {
 				throw error;
@@ -49,35 +49,36 @@ export class AuthService {
 				});
 			return res
 				.status(200)
-				.cookie("session", sessionID, { httpOnly: true })
-				.json({ login: user.rows[0].login, role: `${user.rows[0].role}`, message: "Успешная аутентификация" });
+				.cookie("session", sessionID, { httpOnly: true, secure: false })
+				.json({ login: user.rows[0].login, role: `${user.rows[0].role}`, message: "Успешный вход" });
 		} catch (error) {
 			console.error(error);
 			return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
-	async logout(@Req() req: Request, @Res() res: Response) {
+	async logout(req: Request, res: Response) {
 		try {
-			const sessionID = req.headers.cookie?.split("=")[1];
+			const sessionID = req.cookies["session"];
 			await this.pg.query(`DELETE FROM public.session WHERE hash='${sessionID}'`).catch((error) => {
 				throw error;
 			});
-			res.clearCookie("session");
-			return res.status(200).send("Успешный выход");
+			return res.status(200).clearCookie("session").send("Успешный выход");
 		} catch (error) {
 			return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
-	async isAuth(@Req() req: Request, @Res() res: Response) {
+	async isAuth(req: Request, res: Response) {
 		try {
-			const sessionID = req.headers.cookie?.split("=")[1];
-			if (!sessionID) res.status(401).send("Вы не аутентифицированы");
+			const sessionID = req.cookies["session"];
+			if (!sessionID) return res.status(401).send("Вы не аутентифицированы");
+
 			const currentSession = await this.pg
 				.query(`SELECT * FROM public.session WHERE hash='${sessionID}'`)
 				.catch((error) => {
 					throw error;
 				});
-			if (!currentSession.rowCount) res.status(401).send("Ваша сессия истекла");
+			if (!currentSession.rowCount) return res.status(401).clearCookie("session").send("Ваша сессия истекла");
+
 			const user = await this.pg
 				.query(`SELECT * FROM public.user WHERE login='${currentSession.rows[0].login}'`)
 				.catch((error) => {
@@ -85,8 +86,9 @@ export class AuthService {
 				});
 			return res
 				.status(200)
-				.cookie("session", sessionID, { httpOnly: true })
 				.json({ login: user.rows[0]["login"], role: `${user.rows[0]["role"]}`, message: "Успешная аутентификация" });
-		} catch (error) {}
+		} catch (error) {
+			return res.status(500).send("Непредвиденная ошибка");
+		}
 	}
 }
