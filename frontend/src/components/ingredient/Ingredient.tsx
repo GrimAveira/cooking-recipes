@@ -48,15 +48,15 @@ function Ingredient(props: IProps) {
 		{
 			label: "Замечание",
 			value: notation,
-			pattern: "[а-яА-Я ]*",
-			title: "Нельзя",
+			pattern: "^[0-9\\W]{1,30}$",
+			title: "Не должно превышать порог в 30 символов",
 			changeHandler: changeNotationHandler,
 		},
 		{
 			label: "Количество",
 			value: quantity,
-			pattern: "[0-9]*",
-			title: "Нельзя",
+			pattern: "^[0-9]{1,10}$",
+			title: "Напишите число",
 			changeHandler: changeQuantityHandler,
 		},
 	];

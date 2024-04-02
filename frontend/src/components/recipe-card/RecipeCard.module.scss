@@ -18,7 +18,8 @@
 	height: 400px;
 	width: 260px;
 
-	margin: 30px;
+	margin: 0 20px;
+	margin-top: 30px;
 
 	* {
 		z-index: 3;
@@ -85,7 +86,7 @@
 
 	padding: 10px;
 
-	backdrop-filter: blur(3px);
+	backdrop-filter: blur(2px) brightness(30%);
 
 	transition: 0.25s;
 }

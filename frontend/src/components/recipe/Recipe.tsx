@@ -10,11 +10,14 @@ import RecipeAddInfo from "../recipe-addition-info/RecipeAddInfo";
 import RecipeTitle from "../recipe-title/RecipeTitle";
 import Comments from "../comments/Comments";
 import Loader from "../loader/Loader";
+import ModalComment from "../modal-comment/ModalComment";
+import Button from "../button/Button";
 
 const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 	const { recipes, id } = props;
 
 	const [recipe, setRecipe] = useState<IRecipeFetch>();
+	const [modalActive, setModalActive] = useState<boolean>(false);
 
 	const { isLoading, data: ingredients } = useQuery({
 		queryKey: ["ingredients", id],
@@ -331,6 +334,13 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 				</div>
 				<p>Пошаговая готовка</p>
 				<p className={styles.enjoy}>Приятного аппетита!</p>
+				<ModalComment active={modalActive} setActive={setModalActive} />
+				<Button
+					onClick={() => {
+						setModalActive(true);
+					}}
+					title="Написать комментарий"
+				/>
 				<div className={styles.comments}></div>
 				<Comments id={id} />
 			</div>

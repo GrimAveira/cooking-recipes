@@ -17,7 +17,10 @@ export default class UserService {
 	}
 	static async authorization(userData: IUserData) {
 		try {
-			const response = await axios.post(`http://${hostIp}:3000/api/auth/login`, userData);
+			const response = await axios.post(`http://${hostIp}:3000/api/auth/login`, userData, {
+				withCredentials: true,
+			});
+			console.log(response);
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -29,7 +32,9 @@ export default class UserService {
 	}
 	static async logout() {
 		try {
-			const response = await axios.delete(`http://${hostIp}:3000/api/auth/logout`);
+			const response = await axios.get(`http://${hostIp}:3000/api/auth/logout`, {
+				withCredentials: true,
+			});
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -41,7 +46,9 @@ export default class UserService {
 	}
 	static async isAuth() {
 		try {
-			const response = await axios.get(`http://${hostIp}:3000/api/auth/isAuth`);
+			const response = await axios.get(`http://${hostIp}:3000/api/auth/isAuth`, {
+				withCredentials: true,
+			});
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {

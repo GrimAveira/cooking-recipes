@@ -1,4 +1,4 @@
-import TextField from "@mui/material/TextField";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
 import styles from "./BasicInput.module.scss";
 import { ChangeEvent } from "react";
 
@@ -10,10 +10,12 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	pattern: string;
 	title: string;
 	required?: boolean;
+	inputClass?: React.HTMLAttributes<TextFieldProps>;
 }
 
 export default function BasicInput(props: IProps) {
-	const { label, name, className, value, changeHandler, title, pattern, required } = props;
+	const { label, name, className, value, changeHandler, title, pattern, required, inputClass } =
+		props;
 
 	return (
 		<div className={className}>
@@ -23,7 +25,7 @@ export default function BasicInput(props: IProps) {
 				name={name}
 				label={label}
 				onChange={changeHandler}
-				className={styles.container}
+				className={`${styles.container} ${inputClass}`}
 				sx={{
 					"& .MuiOutlinedInput-root": {
 						color: "#ffffff",

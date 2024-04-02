@@ -1,11 +1,12 @@
 @import "../../style/variables.scss";
-
 .containerCards {
 	width: 100%;
-	min-height: 1600px;
+
+	margin-bottom: 30px;
 
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 .recipeCount {
 	width: max-content;

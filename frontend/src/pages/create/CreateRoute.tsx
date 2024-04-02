@@ -25,18 +25,19 @@ const CreateRouteBase = () => {
 		login: login,
 		active_cooking_time: "",
 		calories_number: "",
-		complexity: "",
+		complexity: "1",
 		description: "",
 		image: undefined,
-		kitchen: "",
+		kitchen: "1",
 		servings_number: "",
 		storage_time: "",
-		subtype: "",
+		subtype: "1",
 		title: "",
 		total_cooking_time: "",
 		type: "1",
 	});
 	const [image, setImage] = useState<FormData>();
+	const [preview, setPreview] = useState<File>();
 	const [filteredSubtypes, setFilteredSubtypes] = useState<IDataFetch[]>([]);
 	const [cookingStages, setCookingStages] = useState<ICookingStage[]>([]);
 	const [ingredients, setIngredients] = useState<IIngredient[]>([]);
@@ -79,13 +80,14 @@ const CreateRouteBase = () => {
 			const imageUrl = URL.createObjectURL(file);
 			const { width, height } = await getImageSize(imageUrl);
 			console.log(width, height);
-			if (width >= 1150 && width <= 1250 && height >= 700 && height <= 900) {
+			if (width >= 800 && width <= 1000 && height >= 500 && height <= 700) {
 				const formData = new FormData();
 				formData.append("image", file);
 				setImage(formData);
+				setPreview(file);
 			} else {
 				event.target.value = "";
-				promiseFail("Картинка неправильного размера");
+				promiseFail("Изображение приблизительно должно иметь разрешение 900x600");
 			}
 		}
 	};
@@ -171,8 +173,6 @@ const CreateRouteBase = () => {
 		return <div>Error</div>;
 	}
 
-	console.log(ingredients);
-
 	if (types && kitchens && classifications && ingredientsFetch) {
 		const selects = [
 			{
@@ -215,43 +215,43 @@ const CreateRouteBase = () => {
 				label: "Время активной готовки",
 				name: "active_cooking_time",
 				value: recipe.active_cooking_time,
-				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				pattern: "^[0-9\\W]{1,30}$",
+				title: "Количество симоволов не должно превышать 30",
 			},
 			{
 				label: "Название рецепта",
 				name: "title",
 				value: recipe.title,
-				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				pattern: "^[\\W]{2,30}$",
+				title: "Название должно содержать кириллицу и содержать не более 30 символов",
 			},
 			{
 				label: "Время хранения",
 				name: "storage_time",
 				value: recipe.storage_time,
-				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				pattern: "^[0-9\\W]{1,30}",
+				title: "Количество симоволов не должно превышать 30",
 			},
 			{
 				label: "Общее время готовки",
 				name: "total_cooking_time",
 				value: recipe.total_cooking_time,
-				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				pattern: "^[0-9\\W]{1,30}",
+				title: "Количество симоволов не должно превышать 30",
 			},
 			{
 				label: "Количество порций",
 				name: "servings_number",
 				value: recipe.servings_number,
 				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				title: "Напишите число",
 			},
 			{
 				label: "Количество килокалорий",
 				name: "calories_number",
 				value: recipe.calories_number,
-				pattern: "^[0-9]{1,2}$",
-				title: "неправильно",
+				pattern: "^[0-9]{1,5}$",
+				title: "Напишите число",
 			},
 		];
 		return (
@@ -266,18 +266,30 @@ const CreateRouteBase = () => {
 							title="Нужно заполнить"
 						/>
 					))}
-					АЛО
-					<textarea onChange={changeHandler} value={recipe.description} name="description" />
+					<textarea
+						className={styles.textArea}
+						onChange={changeHandler}
+						value={recipe.description}
+						name="description"
+						maxLength={500}
+					/>
 					{inputs.map((input) => (
 						<BasicInput
 							{...input}
 							key={input.name}
-							className={styles.select}
+							className={styles.input}
 							required={true}
 							changeHandler={changeHandler}
 						/>
 					))}
 					<input type="file" onChange={changeHandlerImage} name="image" required={true} title="" />
+					{preview && (
+						<img
+							src={URL.createObjectURL(preview)}
+							alt="preview"
+							style={{ height: "600px", width: "900px" }}
+						/>
+					)}
 					<div>
 						{ingredients?.map((ingredient) => (
 							<Ingredient
