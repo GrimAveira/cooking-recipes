@@ -3,6 +3,7 @@ import { Response } from "express";
 import { InjectClient } from "nest-postgres";
 import { Client } from "pg";
 import { Comment } from "src/sentiment/dto/comment.dto";
+import { CommentAdd } from "./dto/comment.dto";
 
 @Injectable()
 export class CommentService {
@@ -37,6 +38,18 @@ export class CommentService {
 			});
 		} catch (error) {
 			console.log(error);
+		}
+	}
+	async add(res: Response, comment: CommentAdd) {
+		try {
+			const { recipe, description, user } = comment;
+			await this.pg.query(
+				`INSERT INTO comment (recipe, description, "user") VALUES ('${recipe}','${description}','${user}')`,
+			);
+			return res.status(200).send("Отзыв успешно добавлен");
+		} catch (error) {
+			console.log(error);
+			return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
 }
