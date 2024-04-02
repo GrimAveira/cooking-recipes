@@ -29,7 +29,6 @@ export interface IRecipeFetch {
 	storage_time: string;
 	servings_number: string;
 	calories_number: string;
-	score_number: string;
 	rating: string;
 	image_path: string;
 	first_name: string;

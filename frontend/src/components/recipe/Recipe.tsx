@@ -191,7 +191,7 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 				</div>
 				<div className={styles.minorInfo}>
 					<p className={styles.minorInfoItem}>
-						{`Количество положительных оценок: ${recipe.score_number}`}{" "}
+						{`Рейтинг: ${recipe.rating}`}{" "}
 						<svg
 							width="16"
 							height="16"
@@ -346,7 +346,7 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 						</ul>
 					</div>
 				</div>
-				<p>Пошаговая готовка</p>
+				<RecipeTitle text={"Пошаговая готовка"}></RecipeTitle>
 				<p className={styles.enjoy}>Приятного аппетита!</p>
 				<ModalComment active={modalActive} setActive={setModalActive} />
 				<Button
