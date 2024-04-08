@@ -27,6 +27,7 @@ import { SubtypeModule } from "./subtype/subtype.module";
 import { KitchenModule } from "./kitchen/kitchen.module";
 import { ClassificationRecipeModule } from "./classification-recipe/classification-recipe.module";
 import { MulterModule } from "@nestjs/platform-express";
+import { CookingStageModule } from './cooking-stage/cooking-stage.module';
 
 @Module({
 	imports: [
@@ -60,6 +61,7 @@ import { MulterModule } from "@nestjs/platform-express";
 		SubtypeModule,
 		KitchenModule,
 		ClassificationRecipeModule,
+		CookingStageModule,
 	],
 	controllers: [AppController, TemporarilyScoringController],
 	providers: [AppService, TemporarilyScoringService],

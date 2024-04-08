@@ -7,7 +7,6 @@ export class IngredientController {
 	constructor(private readonly ingredientService: IngredientService) {}
 	@Get("getAll")
 	async getAll(@Res() res: Response) {
-		console.log("all");
 		return this.ingredientService.getAll(res);
 	}
 	@Get(":recipeId")
