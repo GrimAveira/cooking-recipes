@@ -21,7 +21,7 @@ export const recipeOptions = { recently, favorite };
 
 export const categoryCards = [
 	{ img: bakes, url: "recipes/bakes", title: "Выпечка" },
-	{ img: desserts, url: "recipes/desserts", title: "Дессерты" },
+	{ img: desserts, url: "recipes/desserts", title: "Десерты" },
 	{ img: broths, url: "recipes/broths", title: "Бульоны" },
 	{ img: soups, url: "recipes/soups", title: "Супы" },
 	{ img: drinks, url: "recipes/drinks", title: "Напитки" },
@@ -29,10 +29,10 @@ export const categoryCards = [
 ];
 
 export const titles = [
-	{ title: "Избранное", url: "/favourites" },
-	{ title: "Личный кабинет", url: "/lk" },
-	{ title: "О сайте", url: "/about" },
-	{ title: "Добавить рецепт", url: "/create" },
+	{ title: "Избранное", url: "/favourites", isAuth: true },
+	{ title: "Личный кабинет", url: "/lk", isAuth: true },
+	{ title: "О сайте", url: "/about", isAuth: false },
+	{ title: "Добавить рецепт", url: "/create", isAuth: true },
 ];
 
 export const icons = [
@@ -82,7 +82,7 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 		"desserts",
 		{
 			background: dessertMinor,
-			title: "Дессерты",
+			title: "Десерты",
 			subtypes: [
 				{ img: biscuitType, title: "Печенье", url: "biscuits" },
 				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
@@ -137,7 +137,7 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 
 export const TYPES_TRANSLATE_ENG_RU = new Map<string, string>([
 	["bakes", "Выпечка"],
-	["desserts", "Дессерты"],
+	["desserts", "Десерты"],
 	["snacks", "Закуски"],
 	["drinks", "Напитки"],
 	["soups", "Супы"],
@@ -147,7 +147,7 @@ export const TYPES_TRANSLATE_ENG_RU = new Map<string, string>([
 ]);
 export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Выпечка", "bakes"],
-	["Дессерты", "desserts"],
+	["Десерты", "desserts"],
 	["Закуски", "snacks"],
 	["Напитки", "drinks"],
 	["Супы", "soups"],
@@ -156,9 +156,11 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Кексы", "cupcakes"],
 ]);
 
-export const hostIp = "192.168.0.106";
+export const hostIp = "192.168.56.1";
 //192.168.0.106
 //10.60.14.170 internet?
 //192.168.14.163
 //192.168.56.1
 //localhost
+//10.60.14.170
+//10.60.14.170

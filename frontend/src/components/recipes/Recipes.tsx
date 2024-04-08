@@ -5,6 +5,8 @@ import Recipe from "../recipe/Recipe";
 import { useEffect, useState } from "react";
 import { IRecipeFetch } from "../../interfaces";
 import { TYPES_TRANSLATE_ENG_RU } from "../../constants";
+import Loader from "../loader/Loader";
+import CustomError from "../custom-error/CustomError";
 
 const filterRecipe = (array: IRecipeFetch[], type: string, subtype?: string) => {
 	let filteredArray = [...array];
@@ -25,7 +27,7 @@ const Recipes = (props: { id?: string; type?: string; subtype?: string }) => {
 
 	const [filteredRecipes, setFilteredRecipes] = useState<IRecipeFetch[]>([]);
 
-	const { isPending, error, data } = useQuery({
+	const { isLoading, isError, data } = useQuery({
 		queryKey: ["recipes"],
 		queryFn: () => {
 			return RecipeService.getAll();
@@ -37,6 +39,10 @@ const Recipes = (props: { id?: string; type?: string; subtype?: string }) => {
 			setFilteredRecipes(filterRecipe(data, type, subtype));
 		}
 	}, [data, subtype, type]);
+
+	if (isLoading) return <Loader />;
+
+	if (isError) return <CustomError description="Непредвиденная ошибка" />;
 
 	return (
 		<>

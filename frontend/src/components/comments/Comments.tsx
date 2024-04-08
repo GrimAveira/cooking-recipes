@@ -47,18 +47,17 @@ const Comments = (props: IProps) => {
 								y2="29.3334"
 								gradientUnits="userSpaceOnUse"
 							>
-								<stop stop-color="#F9B992" />
-								<stop offset="0.328125" stop-color="#EFAE89" />
-								<stop offset="0.692708" stop-color="#BF7A56" />
-								<stop offset="1" stop-color="#BA6D45" />
+								<stop stopColor="#F9B992" />
+								<stop offset="0.328125" stopColor="#EFAE89" />
+								<stop offset="0.692708" stopColor="#BF7A56" />
+								<stop offset="1" stopColor="#BA6D45" />
 							</linearGradient>
 						</defs>
 					</svg>
 				</RecipeTitle>
 				{data.map((elem) => (
-					<Text className={styles.comment}>
+					<Text key={elem.description} className={styles.comment} description={elem.description}>
 						<UserInfo first_name={elem.first_name} second_name={elem.second_name} />
-						{elem.description}
 					</Text>
 				))}
 			</div>

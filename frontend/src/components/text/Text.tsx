@@ -1,12 +1,19 @@
 import styles from "./Text.module.scss";
 
-const Text = (props: React.HTMLAttributes<HTMLDivElement>) => {
-	const { children } = props;
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
+	description: string;
+}
+
+const Text = (props: IProps) => {
+	const { description } = props;
 
 	return (
 		<div {...props} className={`${styles.container} ${props.className}`}>
 			<div className={styles.opacity} />
-			<p className={styles.text}>{children}</p>
+			<div className={styles.userInfo}>
+				{props.children}
+				<p className={styles.text}>{description}</p>
+			</div>
 		</div>
 	);
 };

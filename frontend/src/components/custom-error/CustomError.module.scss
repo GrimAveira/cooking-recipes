@@ -1,0 +1,18 @@
+@import "../../style/variables.scss";
+
+.exContainer {
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.inContainer {
+	border: 2px solid $brick-color;
+	border-radius: 10px;
+
+	color: white;
+	font-size: 24px;
+
+	padding: 30px;
+}

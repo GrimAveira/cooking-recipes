@@ -6,10 +6,10 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const UserInfo = (props: IProps) => {
-	const { first_name, second_name } = props;
+	const { first_name, second_name, className } = props;
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${className}`}>
 			<svg
 				width="30"
 				height="30"
@@ -17,7 +17,7 @@ const UserInfo = (props: IProps) => {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<g clip-path="url(#clip0_407_54)">
+				<g clipPath="url(#clip0_407_54)">
 					<path
 						d="M15 0.600098C12.1519 0.600098 9.36784 1.44464 6.99977 3.02694C4.6317 4.60923 2.78602 6.8582 1.69612 9.48946C0.606215 12.1207 0.321047 15.0161 0.876674 17.8094C1.4323 20.6027 2.80377 23.1686 4.81764 25.1824C6.83152 27.1963 9.39736 28.5678 12.1907 29.1234C14.984 29.679 17.8794 29.3939 20.5106 28.304C23.1419 27.2141 25.3909 25.3684 26.9731 23.0003C28.5554 20.6322 29.4 17.8481 29.4 15.0001C29.4 11.181 27.8828 7.51828 25.1823 4.81776C22.4818 2.11724 18.8191 0.600098 15 0.600098ZM15 28.2001C12.3893 28.2001 9.83718 27.4259 7.66646 25.9755C5.49573 24.5251 3.80385 22.4635 2.80477 20.0515C1.8057 17.6395 1.54429 14.9855 2.05362 12.4249C2.56294 9.86436 3.82012 7.51234 5.66617 5.66629C7.51223 3.82024 9.86424 2.56306 12.4248 2.05373C14.9853 1.54441 17.6394 1.80581 20.0514 2.80489C22.4634 3.80396 24.5249 5.49584 25.9754 7.66657C27.4258 9.8373 28.2 12.3894 28.2 15.0001C28.2 18.501 26.8093 21.8584 24.3338 24.3339C21.8583 26.8094 18.5008 28.2001 15 28.2001Z"
 						fill="url(#paint0_linear_407_54)"
@@ -40,10 +40,10 @@ const UserInfo = (props: IProps) => {
 						y2="29.4001"
 						gradientUnits="userSpaceOnUse"
 					>
-						<stop stop-color="#F9B992" />
-						<stop offset="0.328125" stop-color="#EFAE89" />
-						<stop offset="0.692708" stop-color="#BF7A56" />
-						<stop offset="1" stop-color="#BA6D45" />
+						<stop stopColor="#F9B992" />
+						<stop offset="0.328125" stopColor="#EFAE89" />
+						<stop offset="0.692708" stopColor="#BF7A56" />
+						<stop offset="1" stopColor="#BA6D45" />
 					</linearGradient>
 					<linearGradient
 						id="paint1_linear_407_54"
@@ -53,10 +53,10 @@ const UserInfo = (props: IProps) => {
 						y2="23.6461"
 						gradientUnits="userSpaceOnUse"
 					>
-						<stop stop-color="#F9B992" />
-						<stop offset="0.328125" stop-color="#EFAE89" />
-						<stop offset="0.692708" stop-color="#BF7A56" />
-						<stop offset="1" stop-color="#BA6D45" />
+						<stop stopColor="#F9B992" />
+						<stop offset="0.328125" stopColor="#EFAE89" />
+						<stop offset="0.692708" stopColor="#BF7A56" />
+						<stop offset="1" stopColor="#BA6D45" />
 					</linearGradient>
 					<linearGradient
 						id="paint2_linear_407_54"
@@ -66,10 +66,10 @@ const UserInfo = (props: IProps) => {
 						y2="14.2261"
 						gradientUnits="userSpaceOnUse"
 					>
-						<stop stop-color="#F9B992" />
-						<stop offset="0.328125" stop-color="#EFAE89" />
-						<stop offset="0.692708" stop-color="#BF7A56" />
-						<stop offset="1" stop-color="#BA6D45" />
+						<stop stopColor="#F9B992" />
+						<stop offset="0.328125" stopColor="#EFAE89" />
+						<stop offset="0.692708" stopColor="#BF7A56" />
+						<stop offset="1" stopColor="#BA6D45" />
 					</linearGradient>
 					<clipPath id="clip0_407_54">
 						<rect width="30" height="30" fill="white" />

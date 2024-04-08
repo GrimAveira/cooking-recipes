@@ -19,8 +19,6 @@ function Comment() {
 		setText(event.target.value);
 	};
 
-	console.log(text);
-
 	const mutationComment = useMutation({
 		mutationFn: async (payload: ICommentAdd) => {
 			return await CommentService.add(payload);
