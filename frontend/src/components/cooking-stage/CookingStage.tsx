@@ -1,53 +1,32 @@
-import { ICookingStage } from "../../interfaces/index";
-import BasicInput from "../basic-input/BasicInput";
+import { VerticalTimelineElement } from "react-vertical-timeline-component";
+import { ICookingStageFetch } from "../../interfaces";
+import "react-vertical-timeline-component/style.min.css";
+import styles from "./CookingStage.module.scss";
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement>, ICookingStage {
-	setCookingStages: React.Dispatch<React.SetStateAction<ICookingStage[]>>;
-	stageId: number;
-}
-
-function CookingStage(props: IProps) {
-	const { stageId, stageTitle, setCookingStages, description } = props;
-
-	const removeStage = () => {
-		setCookingStages((cookingStages) => {
-			return cookingStages.filter((stage) => stage.stageId !== stageId);
-		});
-	};
-
-	const changeTitleHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		setCookingStages((cookingStages) => {
-			const newCookingStages = [...cookingStages];
-			newCookingStages[Number(stageId)].stageTitle = event.target.value;
-			return newCookingStages;
-		});
-	};
-	const changeDescriptionHandler = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
-		setCookingStages((cookingStages) => {
-			const newCookingStages = [...cookingStages];
-			newCookingStages[Number(stageId)].description = event.target.value;
-			return newCookingStages;
-		});
-	};
+function CookingStage(props: ICookingStageFetch) {
+	const { description, title, order_number } = props;
 
 	return (
-		<div>
-			<p>{props.title}</p>
-			<BasicInput
-				value={stageTitle}
-				changeHandler={changeTitleHandler}
-				label="Название этапа"
-				pattern="^[\\W]{1,30}$"
-				title="Не должно привешать порог в 30 символов"
-				required={true}
-			/>
-			<textarea value={description} onChange={changeDescriptionHandler} maxLength={200} />
-			<button type="button" onClick={removeStage}>
-				Del
-			</button>
-		</div>
+		<VerticalTimelineElement
+			contentStyle={{
+				overflow: "hidden",
+				position: "relative",
+				background: "none",
+				border: "2px solid #dc8d61",
+				color: "#fff",
+				padding: "0",
+			}}
+			contentArrowStyle={{ borderRight: "7px solid #dc8d61" }}
+			dateClassName={styles.date}
+			date={order_number}
+			iconStyle={{ background: "#dc8d61", color: "#fff" }}
+		>
+			<div className={styles.blur} />
+			<div className={styles.info}>
+				<h1 className={`vertical-timeline-element-subtitle`}>{`${order_number}. ${title}`}</h1>
+				<p className={styles.description}>{description}</p>
+			</div>
+		</VerticalTimelineElement>
 	);
 }
 
