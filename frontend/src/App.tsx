@@ -12,37 +12,8 @@ import RecipesRoute from "./pages/recipes/RecipesRoute";
 import CreateRoute from "./pages/create/CreateRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const routerShell = createBrowserRouter([
-	{
-		path: "/",
-		element: <HomeRoute />,
-	},
-	{
-		path: "/login",
-		element: <LoginRoute />,
-	},
-	{
-		path: "/registration",
-		element: <RegistrationRoute />,
-	},
-	{
-		path: "/recipes/:type",
-		element: <RecipesRoute />,
-	},
-	{
-		path: "/recipes/:type/:subtype",
-		element: <RecipesRoute />,
-	},
-	{
-		path: "/recipes/:type/:subtype/:id",
-		element: <RecipesRoute />,
-	},
-	{
-		path: "/create",
-		element: <CreateRoute />,
-	},
-]);
+import Loader from "./components/loader/Loader";
+import CustomError from "./components/custom-error/CustomError";
 
 const checkIsAuth = async () => {
 	const data = await UserService.isAuth();
@@ -54,15 +25,53 @@ function App() {
 	const [role, setRole] = useState<TRole>("");
 	const [login, setLogin] = useState<TLogin>("");
 
+	const routerShell = createBrowserRouter([
+		{
+			path: "/",
+			element: <HomeRoute />,
+		},
+		{
+			path: "/login",
+			element: <LoginRoute />,
+		},
+		{
+			path: "/registration",
+			element: <RegistrationRoute />,
+		},
+		{
+			path: "/recipes/:type",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "/recipes/:type/:subtype",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "/recipes/:type/:subtype/:id",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "*",
+			element: <CustomError description="Несуществующий путь" />,
+		},
+		isAuth
+			? {
+					path: "/create",
+					element: <CreateRoute />,
+				}
+			: {},
+	]);
+
 	const mutationAuth = useMutation({
 		mutationFn: checkIsAuth,
-		onSuccess(response: IAuthInfo) {
+		onSuccess({ role, login }: IAuthInfo) {
 			setIsAuth(true);
-			setRole(response.role);
-			setLogin(response.login);
+			setRole(role);
+			setLogin(login);
 		},
 		onError(message: string) {
 			promiseFail(message);
+			setLogin("");
 		},
 	});
 
@@ -73,7 +82,7 @@ function App() {
 
 	return (
 		<AuthContext.Provider value={{ isAuth, role, login, setIsAuth, setRole, setLogin }}>
-			<RouterProvider router={routerShell} />
+			<RouterProvider router={routerShell} fallbackElement={<Loader />} />
 			<ToastContainer />
 		</AuthContext.Provider>
 	);

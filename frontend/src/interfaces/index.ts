@@ -96,3 +96,19 @@ export interface ICommentAdd {
 	user: string;
 	description: string;
 }
+export interface ICookingStageFetch {
+	id: string;
+	recipe: string;
+	order_number: string;
+	description: string;
+	title: string;
+}
+export interface IGetUserInfo {
+	recipeID: string;
+	login: string;
+}
+export interface IChangeByUser {
+	recipeID: string;
+	login: string;
+	flag: boolean;
+}

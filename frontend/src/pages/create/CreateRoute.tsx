@@ -14,12 +14,12 @@ import { ICookingStage, IDataFetch, IIngredient, IRecipe } from "../../interface
 import { AuthContext } from "../../context/AuthContext";
 import RecipeService from "../../api/RecipeService";
 import ClassificationService from "../../api/ClassificationService";
-import CookingStage from "../../components/cooking-stage/CookingStage";
+import CookingStageCreate from "../../components/cooking-stage-create/CookingStageCreate";
 import Ingredient from "../../components/ingredient/Ingredient";
 import IngredientService from "../../api/IngredientService";
 
 const CreateRouteBase = () => {
-	const { login } = useContext(AuthContext);
+	const { login, isAuth } = useContext(AuthContext);
 
 	const [recipe, setRecipe] = useState<IRecipe>({
 		login: login,
@@ -31,7 +31,7 @@ const CreateRouteBase = () => {
 		kitchen: "1",
 		servings_number: "",
 		storage_time: "",
-		subtype: "1",
+		subtype: "",
 		title: "",
 		total_cooking_time: "",
 		type: "1",
@@ -93,6 +93,7 @@ const CreateRouteBase = () => {
 	};
 	const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		if (!isAuth) promiseFail("Вы не вошли с систему");
 		if (image) mutationRecipe.mutate({ image, recipe, cookingStages, ingredients });
 	};
 	const addStage = () => {
@@ -272,6 +273,7 @@ const CreateRouteBase = () => {
 						value={recipe.description}
 						name="description"
 						maxLength={500}
+						required
 					/>
 					{inputs.map((input) => (
 						<BasicInput
@@ -305,7 +307,11 @@ const CreateRouteBase = () => {
 					</div>
 					<div>
 						{cookingStages?.map((stage) => (
-							<CookingStage {...stage} key={stage.stageId} setCookingStages={setCookingStages} />
+							<CookingStageCreate
+								{...stage}
+								key={stage.stageId}
+								setCookingStages={setCookingStages}
+							/>
 						))}
 						<button onClick={addStage} type="button">
 							Add
