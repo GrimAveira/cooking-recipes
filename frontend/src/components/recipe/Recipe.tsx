@@ -16,6 +16,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { promiseFail } from "../../functions/toastTrigger";
 import CookingStages from "../cooking-stages/CookingStages";
 import UserOptions from "../user-recipe-options/UserOptions";
+import CommentService from "../../api/CommentService";
 
 const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 	const { recipes, id } = props;
@@ -25,10 +26,17 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 
 	const { isAuth, login } = useContext(AuthContext);
 
-	const { isLoading, data: ingredients } = useQuery({
+	const { isLoading: isLoadingIngredients, data: ingredients } = useQuery({
 		queryKey: ["ingredients", id],
 		queryFn: () => {
 			return IngredientService.getByRecipe(id);
+		},
+	});
+
+	const { isLoading: isLoadingComments, data: comments } = useQuery({
+		queryKey: ["comments"],
+		queryFn: () => {
+			return CommentService.getByRecipeId(id);
 		},
 	});
 
@@ -36,9 +44,9 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 		if (recipes) setRecipe(recipes.find((recipe) => recipe.id.toString() === id));
 	}, [recipes, id]);
 
-	if (isLoading) return <Loader />;
+	if (isLoadingIngredients || isLoadingComments) return <Loader />;
 
-	if (recipe) {
+	if (recipe && comments) {
 		const addInfo = [
 			{ name: "Активное время приготовления", value: recipe.active_cooking_time },
 			{ name: "Время хранения", value: recipe.storage_time },
@@ -278,16 +286,21 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 				<CookingStages recipeID={id} />
 				<p className={styles.enjoy}>Приятного аппетита!</p>
 				<ModalComment active={modalActive} setActive={setModalActive} />
-				<Button
-					className={styles.commentButton}
-					onClick={() => {
-						if (!isAuth) promiseFail("Вы не вошли в систему");
-						else setModalActive(true);
-					}}
-					title="Оставить отзыв!"
-				/>
+				{!comments.find((comment) => {
+					return comment.user === login;
+				}) && (
+					<Button
+						className={styles.commentButton}
+						onClick={() => {
+							if (!isAuth) promiseFail("Вы не вошли в систему");
+							else setModalActive(true);
+						}}
+						title="Оставить отзыв!"
+					/>
+				)}
+
 				<div className={styles.comments}></div>
-				<Comments id={id} />
+				<Comments id={id} comments={comments} />
 			</div>
 		);
 	}

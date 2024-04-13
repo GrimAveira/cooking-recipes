@@ -48,6 +48,7 @@ export interface IIngredientsFetch {
 	quantity: string;
 }
 export interface IComment {
+	user: string;
 	recipe: string;
 	description: string;
 	first_name: string;

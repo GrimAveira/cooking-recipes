@@ -156,7 +156,7 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Кексы", "cupcakes"],
 ]);
 
-export const hostIp = "192.168.56.1";
+export const hostIp = "192.168.0.105";
 //192.168.0.106
 //10.60.14.170 internet?
 //192.168.14.163

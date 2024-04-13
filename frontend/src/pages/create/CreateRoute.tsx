@@ -17,6 +17,7 @@ import ClassificationService from "../../api/ClassificationService";
 import CookingStageCreate from "../../components/cooking-stage-create/CookingStageCreate";
 import Ingredient from "../../components/ingredient/Ingredient";
 import IngredientService from "../../api/IngredientService";
+import Button from "../../components/button/Button";
 
 const CreateRouteBase = () => {
 	const { login, isAuth } = useContext(AuthContext);
@@ -87,40 +88,49 @@ const CreateRouteBase = () => {
 				setPreview(file);
 			} else {
 				event.target.value = "";
-				promiseFail("Изображение приблизительно должно иметь разрешение 900x600");
+				promiseFail("Изображение должно иметь разрешение 900x600 +-100");
 			}
 		}
 	};
 	const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (!isAuth) promiseFail("Вы не вошли с систему");
-		if (image) mutationRecipe.mutate({ image, recipe, cookingStages, ingredients });
+		if (image && ingredients.length > 1 && cookingStages.length > 1)
+			mutationRecipe.mutate({ image, recipe, cookingStages, ingredients });
+		else
+			promiseFail(
+				"В готовке должно участвовать не менее 2-х ингредиентов и рецепт должен состоять из не менее 2-х этапов",
+			);
 	};
 	const addStage = () => {
-		setCookingStages((cookingStages) => {
-			return [
-				...cookingStages,
-				{
-					stageId: cookingStages.length,
-					stageTitle: "",
-					image: undefined,
-					description: "",
-				},
-			];
-		});
+		if (cookingStages.length < 5)
+			setCookingStages((cookingStages) => {
+				return [
+					...cookingStages,
+					{
+						stageId: cookingStages.length,
+						stageTitle: "",
+						image: undefined,
+						description: "",
+					},
+				];
+			});
+		else promiseFail("Количество шагов не должно превышать 5");
 	};
 	const addIngredient = () => {
-		setIngredients((ingredients) => {
-			return [
-				...ingredients,
-				{
-					ingredientId: ingredients.length,
-					ingredient: "1",
-					notation: "",
-					quantity: "0",
-				},
-			];
-		});
+		if (ingredients.length < 14)
+			setIngredients((ingredients) => {
+				return [
+					...ingredients,
+					{
+						ingredientId: ingredients.length,
+						ingredient: "1",
+						notation: "",
+						quantity: "0",
+					},
+				];
+			});
+		else promiseFail("Количество ингредиентов не должно превышать 14");
 	};
 
 	const mutationRecipe = useMutation({
@@ -257,55 +267,84 @@ const CreateRouteBase = () => {
 		];
 		return (
 			<div className={styles.container}>
+				<h2 className={styles.title}>Создание рецепта</h2>
 				<form onSubmit={submitHandler}>
-					{selects.map((select) => (
-						<BasicSelect
-							{...select}
-							key={select.name}
-							className={styles.select}
-							required={true}
-							title="Нужно заполнить"
-						/>
-					))}
+					<h3>Выберите изображение вашего блюда</h3>
+					<input
+						type="file"
+						onChange={changeHandlerImage}
+						name="image"
+						required={true}
+						title=""
+						className={styles.fileInput}
+					/>
+					{preview && (
+						<img className={styles.preview} src={URL.createObjectURL(preview)} alt="preview" />
+					)}
 					<textarea
 						className={styles.textArea}
 						onChange={changeHandler}
 						value={recipe.description}
+						placeholder="Опишите ваше блюдо"
 						name="description"
 						maxLength={500}
 						required
 					/>
-					{inputs.map((input) => (
-						<BasicInput
-							{...input}
-							key={input.name}
-							className={styles.input}
-							required={true}
-							changeHandler={changeHandler}
-						/>
-					))}
-					<input type="file" onChange={changeHandlerImage} name="image" required={true} title="" />
-					{preview && (
-						<img
-							src={URL.createObjectURL(preview)}
-							alt="preview"
-							style={{ height: "600px", width: "900px" }}
-						/>
-					)}
-					<div>
+					<h3>Дополнительная информация по рецепту</h3>
+					<div className={styles.addInfo}>
+						<div className={styles.column}>
+							{selects.map((select) => (
+								<BasicSelect
+									{...select}
+									key={select.name}
+									className={styles.select}
+									required={true}
+									title="Нужно заполнить"
+								/>
+							))}
+
+							{inputs.slice(0, 1).map((input) => (
+								<BasicInput
+									{...input}
+									key={input.name}
+									className={styles.input}
+									required={true}
+									changeHandler={changeHandler}
+								/>
+							))}
+						</div>
+
+						<div className={styles.column}>
+							{inputs.slice(1).map((input) => (
+								<BasicInput
+									{...input}
+									key={input.name}
+									className={styles.input}
+									required={true}
+									changeHandler={changeHandler}
+								/>
+							))}
+						</div>
+					</div>
+					<h3>Ингредиенты</h3>
+					<div className={styles.ingContainer}>
 						{ingredients?.map((ingredient) => (
 							<Ingredient
 								{...ingredient}
-								ingredientsFetch={ingredientsFetch}
 								key={ingredient.ingredientId}
+								ingredientsFetch={ingredientsFetch}
 								setIngredients={setIngredients}
 							/>
 						))}
-						<button onClick={addIngredient} type="button">
-							Add
-						</button>
+						<Button
+							className={styles.addIngButton}
+							onClick={addIngredient}
+							type="button"
+							title="Добавить новый ингредиент"
+						/>
 					</div>
-					<div>
+					<h3>Этапы приготовления</h3>
+					<div className={styles.ingContainer}>
 						{cookingStages?.map((stage) => (
 							<CookingStageCreate
 								{...stage}
@@ -313,11 +352,14 @@ const CreateRouteBase = () => {
 								setCookingStages={setCookingStages}
 							/>
 						))}
-						<button onClick={addStage} type="button">
-							Add
-						</button>
+						<Button
+							className={styles.addIngButton}
+							onClick={addStage}
+							type="button"
+							title="Добавить новый этап"
+						/>
 					</div>
-					<button type="submit">Submit</button>
+					<Button className={styles.createButton} type="submit" title="Создать рецепт" />
 				</form>
 			</div>
 		);

@@ -1,31 +1,21 @@
-import { useQuery } from "react-query";
 import styles from "./Comments.module.scss";
-import CommentService from "../../api/CommentService";
 import Text from "../text/Text";
 import UserInfo from "../user-info/UserInfo";
 import RecipeTitle from "../recipe-title/RecipeTitle";
-import Loader from "../loader/Loader";
+import { IComment } from "../../interfaces/index";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	id: string;
+	comments: IComment[];
 }
 
 const Comments = (props: IProps) => {
-	const { id } = props;
+	const { comments } = props;
 
-	const { isLoading, data } = useQuery({
-		queryKey: ["comments"],
-		queryFn: () => {
-			return CommentService.getByRecipeId(id);
-		},
-	});
-
-	if (isLoading) return <Loader />;
-
-	if (data)
+	if (comments)
 		return (
 			<div className={styles.container}>
-				<RecipeTitle className={styles.title} text={`Комментарии к рецепту (${data.length})`}>
+				<RecipeTitle className={styles.title} text={`Комментарии к рецепту (${comments.length})`}>
 					{" "}
 					<svg
 						width="32"
@@ -55,9 +45,9 @@ const Comments = (props: IProps) => {
 						</defs>
 					</svg>
 				</RecipeTitle>
-				{data.map((elem) => (
-					<Text key={elem.description} className={styles.comment} description={elem.description}>
-						<UserInfo first_name={elem.first_name} second_name={elem.second_name} />
+				{comments.map(({ description, first_name, second_name }) => (
+					<Text key={description} className={styles.comment} description={description}>
+						<UserInfo first_name={first_name} second_name={second_name} />
 					</Text>
 				))}
 			</div>

@@ -2,6 +2,7 @@ import { IData, IIngredient } from "../../interfaces";
 import BasicSelect from "../basic-select/BasicSelect";
 import BasicInput from "../basic-input/BasicInput";
 import { SelectChangeEvent } from "@mui/material";
+import styles from "./Ingredient.module.scss";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement>, IIngredient {
 	setIngredients: React.Dispatch<React.SetStateAction<IIngredient[]>>;
@@ -62,8 +63,9 @@ function Ingredient(props: IProps) {
 	];
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<BasicSelect
+				className={styles.select}
 				label="Ингредиент"
 				name="ingredient"
 				value={ingredient}
@@ -74,11 +76,32 @@ function Ingredient(props: IProps) {
 				changeHandler={changeSelectHandler}
 			/>
 			{inputs.map((input) => {
-				return <BasicInput {...input} required={true} />;
+				return (
+					<BasicInput {...input} className={styles.select} required={true} key={input.label} />
+				);
 			})}
-			<button type="button" onClick={removeIngredient}>
-				Del
-			</button>
+			<svg
+				className={styles.delIng}
+				type="button"
+				onClick={removeIngredient}
+				width="36"
+				height="36"
+				viewBox="0 0 36 36"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M2.11719 2.11768L32.0652 32.0657"
+					stroke="white"
+					strokeWidth="2"
+					strokeLinecap="round"
+				/>
+				<path
+					d="M31.7642 2.11768L2.11719 31.7647"
+					stroke="white"
+					strokeWidth="2"
+					strokeLinecap="round"
+				/>
+			</svg>
 		</div>
 	);
 }

@@ -34,20 +34,40 @@ function CookingStageCreate(props: IProps) {
 	};
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<p>{props.title}</p>
 			<BasicInput
+				className={styles.input}
 				value={stageTitle}
 				changeHandler={changeTitleHandler}
 				label="Название этапа"
-				pattern="^[\\W]{1,30}$"
-				title="Не должно привешать порог в 30 символов"
+				pattern="^[а-яА-Я]{1,30}$"
+				title="Не должно превышать порог в 30 символов"
 				required={true}
 			/>
 			<textarea value={description} onChange={changeDescriptionHandler} maxLength={200} />
-			<button type="button" onClick={removeStage}>
-				Del
-			</button>
+			<svg
+				className={styles.delIng}
+				type="button"
+				onClick={removeStage}
+				width="36"
+				height="36"
+				viewBox="0 0 36 36"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M2.11719 2.11768L32.0652 32.0657"
+					stroke="white"
+					strokeWidth="2"
+					strokeLinecap="round"
+				/>
+				<path
+					d="M31.7642 2.11768L2.11719 31.7647"
+					stroke="white"
+					strokeWidth="2"
+					strokeLinecap="round"
+				/>
+			</svg>
 		</div>
 	);
 }

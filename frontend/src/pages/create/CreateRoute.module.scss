@@ -13,6 +13,40 @@
 	background-repeat: repeat;
 	background-size: 50%;
 }
+.fileInput {
+	margin: 20px;
+
+	color: white;
+}
+h3 {
+	font-weight: 400;
+	color: white;
+
+	margin-top: 20px;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.preview {
+	border-radius: 14px;
+
+	overflow: hidden;
+
+	height: 600px;
+	width: 900px;
+
+	margin: 20px;
+}
+h2 {
+	margin: 20px;
+
+	font-family: "Marck Script";
+	font-size: 70px;
+	font-weight: 400;
+	color: white;
+}
 .textArea {
 	width: 600px;
 	height: 200px;
@@ -20,11 +54,11 @@
 	padding: 20px;
 
 	border: 1px solid $brick-color;
-	border-radius: 20px;
+	border-radius: 14px;
 
 	color: white;
 
-	font-size: 14px;
+	font-size: 18px;
 
 	resize: none;
 }
@@ -33,4 +67,35 @@
 }
 .input {
 	margin: 30px;
+}
+.addInfo {
+	margin: 20px;
+
+	display: flex;
+
+	border: 1px solid $brick-color;
+
+	border-radius: 10px;
+}
+.ingContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	border: 1px solid $brick-color;
+	border-radius: 10px;
+
+	margin: 20px;
+	padding: 10px;
+}
+.addIngButton {
+	font-size: 16px;
+
+	padding: 8px;
+}
+.createButton {
+	padding: 8px;
+	margin: 20px;
+
+	font-size: 18px;
 }
