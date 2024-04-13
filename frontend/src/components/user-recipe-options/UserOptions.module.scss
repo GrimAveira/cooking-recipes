@@ -33,17 +33,11 @@
 	display: flex;
 }
 .buttonHover {
-	p {
-		color: $brick-color;
-	}
 	path {
 		fill: $brick-color;
 	}
 }
 .button:hover {
-	p {
-		color: $brick-color;
-	}
 	path {
 		fill: $brick-color;
 	}

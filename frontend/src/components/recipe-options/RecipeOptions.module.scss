@@ -14,4 +14,12 @@
 	cursor: pointer;
 
 	margin-left: 20px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+.optionButton:hover {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.active {
+	border-bottom: 1px solid white;
 }
