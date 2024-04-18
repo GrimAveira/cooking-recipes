@@ -115,3 +115,21 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
+.svgHover {
+	path {
+		fill: $brick-color;
+	}
+}
+.svg:hover {
+	path {
+		fill: $brick-color;
+	}
+}
+.svg:active {
+	p {
+		color: $second-white;
+	}
+	path {
+		fill: $second-white;
+	}
+}

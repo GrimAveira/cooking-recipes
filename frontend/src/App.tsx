@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./components/loader/Loader";
 import CustomError from "./components/custom-error/CustomError";
+import BookmarksRoute from "./pages/bookmarks/BookmarksRoute";
 
 const checkIsAuth = async () => {
 	const data = await UserService.isAuth();
@@ -58,6 +59,12 @@ function App() {
 			? {
 					path: "/create",
 					element: <CreateRoute />,
+				}
+			: {},
+		isAuth
+			? {
+					path: "/bookmarks",
+					element: <BookmarksRoute />,
 				}
 			: {},
 	]);

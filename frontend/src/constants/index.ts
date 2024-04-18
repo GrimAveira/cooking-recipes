@@ -29,7 +29,7 @@ export const categoryCards = [
 ];
 
 export const titles = [
-	{ title: "Избранное", url: "/favourites", isAuth: true },
+	{ title: "Избранное", url: "/bookmarks", isAuth: true },
 	{ title: "Личный кабинет", url: "/lk", isAuth: true },
 	{ title: "О сайте", url: "/about", isAuth: false },
 	{ title: "Добавить рецепт", url: "/create", isAuth: true },

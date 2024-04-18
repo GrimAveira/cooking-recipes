@@ -37,14 +37,6 @@ function UserOptions({
 		},
 	});
 
-	// const changeLikeHandler = (event: React.ChangeEvent<HTMLButtonElement>) => {
-	// 	event.preventDefault();
-	// };
-
-	// const changeBookmarkHandler = (event: React.ChangeEvent<HTMLButtonElement>) => {
-	// 	event.preventDefault();
-	// };
-
 	const mutationBookmark = useMutation({
 		mutationFn: async (payload: IChangeByUser) => {
 			return await BookmarkService.changeByUser(payload);

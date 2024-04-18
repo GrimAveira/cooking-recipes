@@ -52,8 +52,14 @@ const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipeF
 				className={styles.pagination}
 				count={Math.floor(recipes.length / 12) + 1}
 				sx={{
-					"& .MuiPaginationItem-root": {
+					".MuiPaginationItem-root": {
 						color: "#fff",
+					},
+					".Mui-selected": {
+						backgroundColor: "#dc8d61",
+					},
+					".Mui-selected:hover": {
+						backgroundColor: "#8898a6",
 					},
 				}}
 				page={page}
