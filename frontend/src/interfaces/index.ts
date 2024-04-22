@@ -113,3 +113,10 @@ export interface IChangeByUser {
 	login: string;
 	flag: boolean;
 }
+export interface IUserFetchData {
+	email: string;
+	first_name: string;
+	login: string;
+	role: string;
+	second_name: string;
+}

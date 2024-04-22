@@ -30,9 +30,9 @@ export const categoryCards = [
 
 export const titles = [
 	{ title: "Избранное", url: "/bookmarks", isAuth: true },
+	{ title: "Добавить рецепт", url: "/create", isAuth: true },
 	{ title: "Личный кабинет", url: "/lk", isAuth: true },
 	{ title: "О сайте", url: "/about", isAuth: false },
-	{ title: "Добавить рецепт", url: "/create", isAuth: true },
 ];
 
 export const icons = [

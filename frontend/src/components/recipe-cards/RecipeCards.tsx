@@ -4,20 +4,13 @@ import styles from "./RecipeCards.module.scss";
 import RecipeCard from "../recipe-card/RecipeCard";
 import { IRecipeFetch } from "../../interfaces";
 import { Pagination } from "@mui/material";
+import pagination from "../../functions/pagination";
 
 function sortByOption(array: IRecipeFetch[], sortOption: options) {
 	if (sortOption === "popular") array.sort((a, b) => Number(b.rating) - Number(a.rating));
 	else if (sortOption === "recently")
 		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
-	const pagArray: IRecipeFetch[][] = [];
-	let arrayIndex = -1;
-	array.forEach((recipe, index) => {
-		if (index % 12 == 0) {
-			pagArray.push([recipe]);
-			arrayIndex++;
-		} else pagArray[arrayIndex].push(recipe);
-	});
-	return pagArray;
+	return pagination(array);
 }
 
 export type options = "popular" | "recently";
@@ -52,14 +45,14 @@ const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipeF
 				className={styles.pagination}
 				count={Math.floor(recipes.length / 12) + 1}
 				sx={{
-					".MuiPaginationItem-root": {
-						color: "#fff",
+					".MuiPaginationItem-text": {
+						color: "#ffffff !important",
 					},
 					".Mui-selected": {
-						backgroundColor: "#dc8d61",
+						backgroundColor: "#dc8d61 !important",
 					},
 					".Mui-selected:hover": {
-						backgroundColor: "#8898a6",
+						backgroundColor: "#8898a6 !important",
 					},
 				}}
 				page={page}

@@ -16,7 +16,7 @@ const authorization = async (userData: IUserData) => {
 const LoginRoute = () => {
 	const [userData, setUserData] = useState<IUserData>({
 		login: "Tryed",
-		password: "213asdagf",
+		password: "213asdag",
 	});
 
 	const navigate = useNavigate();

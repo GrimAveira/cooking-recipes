@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./components/loader/Loader";
 import CustomError from "./components/custom-error/CustomError";
 import BookmarksRoute from "./pages/bookmarks/BookmarksRoute";
+import LKRoute from "./pages/lk/LKRoute";
 
 const checkIsAuth = async () => {
 	const data = await UserService.isAuth();
@@ -65,6 +66,12 @@ function App() {
 			? {
 					path: "/bookmarks",
 					element: <BookmarksRoute />,
+				}
+			: {},
+		isAuth
+			? {
+					path: "/lk",
+					element: <LKRoute />,
 				}
 			: {},
 	]);
