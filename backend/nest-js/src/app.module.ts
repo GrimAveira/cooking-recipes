@@ -28,6 +28,7 @@ import { KitchenModule } from "./kitchen/kitchen.module";
 import { ClassificationRecipeModule } from "./classification-recipe/classification-recipe.module";
 import { MulterModule } from "@nestjs/platform-express";
 import { CookingStageModule } from './cooking-stage/cooking-stage.module';
+import { UserModule } from './user/user.module';
 
 @Module({
 	imports: [
@@ -62,6 +63,7 @@ import { CookingStageModule } from './cooking-stage/cooking-stage.module';
 		KitchenModule,
 		ClassificationRecipeModule,
 		CookingStageModule,
+		UserModule,
 	],
 	controllers: [AppController, TemporarilyScoringController],
 	providers: [AppService, TemporarilyScoringService],

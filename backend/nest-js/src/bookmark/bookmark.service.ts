@@ -18,12 +18,20 @@ export class BookmarkService {
 			console.log(error);
 		}
 	}
-	async getByUser(res: Response, DTO: GetByUserDTO) {
+	async getByRecipe(res: Response, DTO: GetByUserDTO) {
 		try {
 			const bookmarks = await this.pg.query(
 				`SELECT * FROM list_of_bookmarks WHERE "user"='${DTO.login}' and recipe='${DTO.recipeID}'`,
 			);
 			return res.status(200).json(bookmarks.rowCount);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	async getByUser(res: Response, login: string) {
+		try {
+			const bookmarks = await this.pg.query(`SELECT recipe FROM list_of_bookmarks WHERE "user"='${login}'`);
+			return res.status(200).json(bookmarks.rows.map((obj) => obj.recipe));
 		} catch (error) {
 			console.log(error);
 		}
