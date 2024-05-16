@@ -61,6 +61,10 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			subtypes: [
 				{ img: biscuitType, title: "Печенье", url: "biscuits" },
 				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: cupcakeType, title: "Пицца", url: "pizza" },
+				{ img: cupcakeType, title: "Пироги", url: "cakes" },
+				{ img: cupcakeType, title: "Пирожки", url: "pies" },
+				{ img: cupcakeType, title: "Хлеб", url: "bread" },
 			],
 		},
 	],
@@ -79,6 +83,34 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 		},
 	],
 	[
+		"pizza",
+		{
+			background: bakesMinor,
+			title: "Пиццы",
+		},
+	],
+	[
+		"cakes",
+		{
+			background: bakesMinor,
+			title: "Пироги",
+		},
+	],
+	[
+		"pies",
+		{
+			background: bakesMinor,
+			title: "Пирожки",
+		},
+	],
+	[
+		"bread",
+		{
+			background: bakesMinor,
+			title: "Хлеб",
+		},
+	],
+	[
 		"desserts",
 		{
 			background: dessertMinor,
@@ -86,7 +118,37 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			subtypes: [
 				{ img: biscuitType, title: "Печенье", url: "biscuits" },
 				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Варенье", url: "jam" },
+				{ img: cupcakeType, title: "Кремы", url: "cream" },
 			],
+		},
+	],
+	[
+		"biscuits",
+		{
+			background: bakesMinor,
+			title: "Печенье",
+		},
+	],
+	[
+		"cupcakes",
+		{
+			background: bakesMinor,
+			title: "Кексы",
+		},
+	],
+	[
+		"jam",
+		{
+			background: bakesMinor,
+			title: "Варенье",
+		},
+	],
+	[
+		"cream",
+		{
+			background: bakesMinor,
+			title: "Кремы",
 		},
 	],
 	[
@@ -144,6 +206,12 @@ export const TYPES_TRANSLATE_ENG_RU = new Map<string, string>([
 	["broths", "Бульоны"],
 	["biscuits", "Печенье"],
 	["cupcakes", "Кексы"],
+	["pizza", "Пицца"],
+	["cakes", "Пироги"],
+	["pies", "Пирожки"],
+	["bread", "Хлеб"],
+	["jam", "Варенье"],
+	["cream", "Кремы"],
 ]);
 export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Выпечка", "bakes"],
@@ -154,6 +222,12 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Бульоны", "broths"],
 	["Печенье", "biscuits"],
 	["Кексы", "cupcakes"],
+	["Пицца", "pizza"],
+	["Пироги", "cakes"],
+	["Пирожки", "pies"],
+	["Хлеб", "bread"],
+	["Варенье", "jam"],
+	["Кремы", "cream"],
 ]);
 
 export const hostIp = "192.168.0.105";

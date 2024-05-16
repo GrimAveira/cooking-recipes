@@ -61,9 +61,7 @@ const RecipeCardsBookmarks = () => {
 
 	return (
 		<>
-			<p
-				className={styles.recipeCount}
-			>{`Всего найдено рецептов: ${filteredRecipes?.length + 1}`}</p>
+			<p className={styles.recipeCount}>{`Всего найдено рецептов: ${bookmarkFetch.length}`}</p>
 			<div className={styles.divLine} />
 			<div className={styles.containerCards}>
 				{filteredRecipes[page - 1]?.map((recipe) => {
@@ -72,7 +70,7 @@ const RecipeCardsBookmarks = () => {
 			</div>
 			<Pagination
 				className={styles.pagination}
-				count={Math.floor(filteredRecipes?.length / 12) + 1}
+				count={Math.ceil(filteredRecipes?.length / 12)}
 				sx={{
 					".MuiPaginationItem-text": {
 						color: "#ffffff !important",

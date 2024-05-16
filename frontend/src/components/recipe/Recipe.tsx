@@ -33,12 +33,18 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 		},
 	});
 
-	const { isLoading: isLoadingComments, data: comments } = useQuery({
-		queryKey: ["comments"],
+	const {
+		isLoading: isLoadingComments,
+		data: comments,
+		refetch,
+	} = useQuery({
+		queryKey: ["comments", id],
 		queryFn: () => {
 			return CommentService.getByRecipeId(id);
 		},
 	});
+
+	console.log(comments, id, window.location);
 
 	useEffect(() => {
 		if (recipes) setRecipe(recipes.find((recipe) => recipe.id.toString() === id));
@@ -49,7 +55,7 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 	if (recipe && comments) {
 		const addInfo = [
 			{ name: "Активное время приготовления", value: recipe.active_cooking_time },
-			{ name: "Время хранения", value: recipe.storage_time },
+			{ name: "Время хранения в днях", value: recipe.storage_time },
 			{ name: "Количество порций", value: recipe.servings_number },
 			{ name: "Полное время приготовления", value: recipe.total_cooking_time },
 			{ name: "Сложность готовки", value: recipe.complexity },
@@ -285,7 +291,7 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 				<RecipeTitle text={"Пошаговая готовка"}></RecipeTitle>
 				<CookingStages recipeID={id} />
 				<p className={styles.enjoy}>Приятного аппетита!</p>
-				<ModalComment active={modalActive} setActive={setModalActive} />
+				<ModalComment active={modalActive} setActive={setModalActive} refetch={refetch} />
 				{!comments.find((comment) => {
 					return comment.user === login;
 				}) && (
@@ -298,7 +304,6 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 						title="Оставить отзыв!"
 					/>
 				)}
-
 				<div className={styles.comments}></div>
 				<Comments id={id} comments={comments} />
 			</div>

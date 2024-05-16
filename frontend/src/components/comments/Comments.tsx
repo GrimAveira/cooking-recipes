@@ -16,7 +16,6 @@ const Comments = (props: IProps) => {
 		return (
 			<div className={styles.container}>
 				<RecipeTitle className={styles.title} text={`Комментарии к рецепту (${comments.length})`}>
-					{" "}
 					<svg
 						width="32"
 						height="32"

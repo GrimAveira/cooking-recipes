@@ -14,16 +14,16 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function BasicInput(props: IProps) {
-	const { label, name, className, value, changeHandler, title, pattern, required, inputClass } =
-		props;
+	const { label, name, className, value, changeHandler, title, pattern, inputClass } = props;
 
 	return (
 		<div className={className}>
 			<TextField
-				inputProps={{ pattern: pattern, required: required, title: title }}
+				inputProps={{ pattern: pattern, title: title }}
 				value={value}
 				name={name}
 				label={label}
+				title={title}
 				onChange={changeHandler}
 				className={`${styles.container} ${inputClass}`}
 				sx={{

@@ -6,7 +6,6 @@ function BookmarksRouteBase() {
 	return (
 		<div className={styles.container}>
 			<h2>Избранные рецепты</h2>
-			<div className={styles.line} />
 			<RecipeCardsBookmarks />
 		</div>
 	);

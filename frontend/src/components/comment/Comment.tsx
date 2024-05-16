@@ -8,7 +8,14 @@ import CommentService from "../../api/CommentService";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-function Comment() {
+interface ICommentForm {
+	setActive: (flag: boolean) => void;
+	refetch: () => void;
+}
+
+function Comment(props: ICommentForm) {
+	const { setActive, refetch } = props;
+
 	const [text, setText] = useState<string>("");
 
 	const { id } = useParams();
@@ -16,7 +23,7 @@ function Comment() {
 	const { login } = useContext(AuthContext);
 
 	const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setText(event.target.value);
+		if (event.target.value.length <= 31) setText(event.target.value);
 	};
 
 	const mutationComment = useMutation({
@@ -33,12 +40,16 @@ function Comment() {
 
 	const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		if (id) mutationComment.mutate({ description: text, recipe: id, user: login });
+		if (id) {
+			mutationComment.mutate({ description: text, recipe: id, user: login });
+			setActive(false);
+			refetch();
+		}
 	};
 
 	return (
 		<form className={styles.container} onSubmit={submitHandler}>
-			<textarea value={text} className={styles.textarea} onChange={changeHandler} />
+			<textarea value={text} className={styles.textarea} onChange={changeHandler} maxLength={30} />
 			<Button className={styles.button} title="Оставить отзыв" type="submit" />
 		</form>
 	);

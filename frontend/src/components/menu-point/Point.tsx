@@ -18,7 +18,7 @@ const Point: React.FC<IProps> = ({ title, url, reqAuth }) => {
 				isAuth ? (
 					<a href={url}>{title}</a>
 				) : (
-					<a onClick={() => promiseFail("Вы не вошли")}>{title}</a>
+					<a onClick={() => promiseFail("Вы не вошли в систему")}>{title}</a>
 				)
 			) : (
 				<a href={url}>{title}</a>

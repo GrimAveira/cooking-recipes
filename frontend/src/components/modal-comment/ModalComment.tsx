@@ -4,10 +4,11 @@ import styles from "./ModalComment.module.scss";
 interface IModal {
 	active: boolean;
 	setActive: (flag: boolean) => void;
+	refetch: () => void;
 }
 
 function ModalComment(props: IModal) {
-	const { active, setActive } = props;
+	const { active, setActive, refetch } = props;
 
 	return (
 		<div
@@ -20,7 +21,7 @@ function ModalComment(props: IModal) {
 				className={`${styles.modal__content} ${active ? styles.modal__contentActive : ""}`}
 				onMouseDown={(e) => e.stopPropagation()}
 			>
-				<Comment />
+				<Comment setActive={setActive} refetch={refetch} />
 			</div>
 		</div>
 	);

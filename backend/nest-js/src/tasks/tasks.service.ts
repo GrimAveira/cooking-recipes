@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-// import { Cron, CronExpression } from "@nestjs/schedule";
+import { Cron, CronExpression } from "@nestjs/schedule";
 import { CommentService } from "src/comment/comment.service";
 import { RatingService } from "src/rating/rating.service";
 import { Comment } from "src/sentiment/dto/comment.dto";
@@ -12,7 +12,7 @@ export class TasksService {
 		@Inject(CommentService) private readonly commentService: CommentService,
 		@Inject(RatingService) private readonly ratingService: RatingService,
 	) {}
-	// @Cron(CronExpression.EVERY_30_SECONDS)
+	@Cron(CronExpression.EVERY_30_SECONDS)
 	async handleCron() {
 		try {
 			const comments = await this.commentService.getUnhandled();

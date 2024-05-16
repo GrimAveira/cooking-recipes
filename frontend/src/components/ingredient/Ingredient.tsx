@@ -49,7 +49,7 @@ function Ingredient(props: IProps) {
 		{
 			label: "Замечание",
 			value: notation,
-			pattern: "^[0-9\\W]{1,30}$",
+			pattern: "^[0-9\\W]{0,30}$",
 			title: "Не должно превышать порог в 30 символов",
 			changeHandler: changeNotationHandler,
 		},

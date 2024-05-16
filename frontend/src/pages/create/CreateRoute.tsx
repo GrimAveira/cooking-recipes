@@ -80,7 +80,6 @@ const CreateRouteBase = () => {
 			const file = event.target.files[0];
 			const imageUrl = URL.createObjectURL(file);
 			const { width, height } = await getImageSize(imageUrl);
-			console.log(width, height);
 			if (width >= 800 && width <= 1000 && height >= 500 && height <= 700) {
 				const formData = new FormData();
 				formData.append("image", file);
@@ -88,7 +87,7 @@ const CreateRouteBase = () => {
 				setPreview(file);
 			} else {
 				event.target.value = "";
-				promiseFail("Изображение должно иметь разрешение 900x600 +-100");
+				promiseFail("Изображение должно иметь разрешение 900x600px +-100px");
 			}
 		}
 	};
@@ -237,11 +236,11 @@ const CreateRouteBase = () => {
 				title: "Название должно содержать кириллицу и содержать не более 30 символов",
 			},
 			{
-				label: "Время хранения",
+				label: "Время хранения в днях",
 				name: "storage_time",
 				value: recipe.storage_time,
-				pattern: "^[0-9\\W]{1,30}",
-				title: "Количество симоволов не должно превышать 30",
+				pattern: "^[0-9]{1,4}$",
+				title: "Количество цифр не должно превышать 4",
 			},
 			{
 				label: "Общее время готовки",
@@ -255,14 +254,14 @@ const CreateRouteBase = () => {
 				name: "servings_number",
 				value: recipe.servings_number,
 				pattern: "^[0-9]{1,2}$",
-				title: "Напишите число",
+				title: "Напишите число состоящее из 1-2 цифр",
 			},
 			{
 				label: "Количество килокалорий",
 				name: "calories_number",
 				value: recipe.calories_number,
 				pattern: "^[0-9]{1,5}$",
-				title: "Напишите число",
+				title: "Напишите число из 1-5 цифр",
 			},
 		];
 		return (
