@@ -18,10 +18,12 @@ export class RatingService {
 			const filteredComments: { [key: string]: number } = comments.reduce((accum, curr) => {
 				if (accum[curr.recipe]) {
 					if ((curr.sentiment = 1)) return { ...accum, [curr.recipe]: accum[curr.recipe] + 3 };
-					else return { ...accum, [curr.recipe]: accum[curr.recipe] - 3 };
+					if ((curr.sentiment = -1)) return { ...accum, [curr.recipe]: accum[curr.recipe] - 3 };
+					return { ...accum, [curr.recipe]: accum[curr.recipe] };
 				} else {
 					if ((curr.sentiment = 1)) return { ...accum, [curr.recipe]: 3 };
-					else return { ...accum, [curr.recipe]: -3 };
+					if ((curr.sentiment = -1)) return { ...accum, [curr.recipe]: -3 };
+					return { ...accum, [curr.recipe]: 0 };
 				}
 			}, {});
 			const [likesCurrent, bookmarksCurrent, temporarilyData] = await Promise.all([

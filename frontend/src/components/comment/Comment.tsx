@@ -23,7 +23,7 @@ function Comment(props: ICommentForm) {
 	const { login } = useContext(AuthContext);
 
 	const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		if (event.target.value.length <= 31) setText(event.target.value);
+		if (event.target.value.length <= 150) setText(event.target.value);
 	};
 
 	const mutationComment = useMutation({
@@ -49,7 +49,7 @@ function Comment(props: ICommentForm) {
 
 	return (
 		<form className={styles.container} onSubmit={submitHandler}>
-			<textarea value={text} className={styles.textarea} onChange={changeHandler} maxLength={30} />
+			<textarea value={text} className={styles.textarea} onChange={changeHandler} />
 			<Button className={styles.button} title="Оставить отзыв" type="submit" />
 		</form>
 	);

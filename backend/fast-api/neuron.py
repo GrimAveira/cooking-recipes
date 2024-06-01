@@ -20,7 +20,7 @@ class SentimentClassifier:
 
         if res[0][1] > 0.55:
             return 1
-        elif res[0][1] > 0.45:
+        elif res[0][1] >= 0.45:
             return 0
         else:
             return -1

@@ -6,8 +6,9 @@ import { Response } from "express";
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 	@Get(":login")
-	async getAll(@Res() res: Response, @Param() params: { login: string }) {
-		return this.userService.getAll(res, params.login);
+	async getUserInfo(@Res() res: Response, @Param() params: { login: string }) {
+		const users = this.userService.getUserInfo(params.login);
+		return res.status(200).json(users);
 	}
 	@Put("updateData")
 	async updateData(@Res() res: Response, @Body() payload: { login: string; firstName: string; secondName: string }) {

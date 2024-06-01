@@ -2,7 +2,7 @@ import { Inject, Injectable, Res } from "@nestjs/common";
 import { Response } from "express";
 import { InjectClient } from "nest-postgres";
 import { Client } from "pg";
-import { CryptService } from "src/crypt/crypt.service";
+import { CryptService } from "../crypt/crypt.service";
 
 @Injectable()
 export class UserService {
@@ -10,13 +10,13 @@ export class UserService {
 		@InjectClient() private readonly pg: Client,
 		@Inject(CryptService) private readonly cryptService: CryptService,
 	) {}
-	async getAll(@Res() res: Response, login: string) {
+	async getUserInfo(login: string) {
 		try {
 			const data = await this.pg.query(`SELECT * FROM public.user WHERE login = '${login}'`);
-			return res.status(200).json(data.rows[0]);
+			return data.rows[0];
 		} catch (error) {
 			console.log(error);
-			return res.status(500).send("Непредвиденная ошибка");
+			// return res.status(500).send("Непредвиденная ошибка");
 		}
 	}
 	async updateData(

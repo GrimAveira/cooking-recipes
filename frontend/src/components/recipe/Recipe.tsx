@@ -44,8 +44,6 @@ const Recipe = (props: { recipes: IRecipeFetch[]; id: string }) => {
 		},
 	});
 
-	console.log(comments, id, window.location);
-
 	useEffect(() => {
 		if (recipes) setRecipe(recipes.find((recipe) => recipe.id.toString() === id));
 	}, [recipes, id]);

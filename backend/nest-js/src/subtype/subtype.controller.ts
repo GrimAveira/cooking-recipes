@@ -7,6 +7,7 @@ export class SubtypeController {
 	constructor(private readonly subtypeService: SubtypeService) {}
 	@Get("getAll")
 	async getAll(@Res() res: Response) {
-		return this.subtypeService.getAll(res);
+		const data = await this.subtypeService.getAll();
+		return res.status(200).json(data);
 	}
 }
