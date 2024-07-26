@@ -61,9 +61,9 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			subtypes: [
 				{ img: biscuitType, title: "Печенье", url: "biscuits" },
 				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
-				{ img: cupcakeType, title: "Пицца", url: "pizza" },
+				{ img: biscuitType, title: "Пицца", url: "pizza" },
 				{ img: cupcakeType, title: "Пироги", url: "cakes" },
-				{ img: cupcakeType, title: "Пирожки", url: "pies" },
+				{ img: biscuitType, title: "Пирожки", url: "pies" },
 				{ img: cupcakeType, title: "Хлеб", url: "bread" },
 			],
 		},
@@ -126,28 +126,28 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 	[
 		"biscuits",
 		{
-			background: bakesMinor,
+			background: dessertMinor,
 			title: "Печенье",
 		},
 	],
 	[
 		"cupcakes",
 		{
-			background: bakesMinor,
+			background: dessertMinor,
 			title: "Кексы",
 		},
 	],
 	[
 		"jam",
 		{
-			background: bakesMinor,
+			background: dessertMinor,
 			title: "Варенье",
 		},
 	],
 	[
 		"cream",
 		{
-			background: bakesMinor,
+			background: dessertMinor,
 			title: "Кремы",
 		},
 	],
@@ -157,9 +157,31 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			background: brothsMinor,
 			title: "Бульоны",
 			subtypes: [
-				{ img: biscuitType, title: "Печенье", url: "biscuits" },
-				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Грибной", url: "mushroom" },
+				{ img: cupcakeType, title: "Овощной", url: "vegetable" },
+				{ img: biscuitType, title: "Мясной", url: "meat" },
 			],
+		},
+	],
+	[
+		"mushroom",
+		{
+			background: brothsMinor,
+			title: "Грибной",
+		},
+	],
+	[
+		"vegetable",
+		{
+			background: brothsMinor,
+			title: "Овощной",
+		},
+	],
+	[
+		"meat",
+		{
+			background: brothsMinor,
+			title: "Мясной",
 		},
 	],
 	[
@@ -168,9 +190,31 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			background: soupMinor,
 			title: "Супы",
 			subtypes: [
-				{ img: biscuitType, title: "Печенье", url: "biscuits" },
-				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Крем-суп", url: "cream-soup" },
+				{ img: cupcakeType, title: "Пюреобразный", url: "mash" },
+				{ img: biscuitType, title: "Холодный", url: "cold" },
 			],
+		},
+	],
+	[
+		"cream-soup",
+		{
+			background: soupMinor,
+			title: "Крем-суп",
+		},
+	],
+	[
+		"mash",
+		{
+			background: soupMinor,
+			title: "Пюреобразный",
+		},
+	],
+	[
+		"cold",
+		{
+			background: soupMinor,
+			title: "Холодный",
 		},
 	],
 	[
@@ -179,9 +223,23 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 			background: drinkMinor,
 			title: "Напитки",
 			subtypes: [
-				{ img: biscuitType, title: "Печенье", url: "biscuits" },
-				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
+				{ img: biscuitType, title: "Чай", url: "tea" },
+				{ img: cupcakeType, title: "Сок", url: "juice" },
 			],
+		},
+	],
+	[
+		"tea",
+		{
+			background: drinkMinor,
+			title: "Чай",
+		},
+	],
+	[
+		"juice",
+		{
+			background: drinkMinor,
+			title: "Сок",
 		},
 	],
 	[
@@ -189,10 +247,14 @@ export const RECIPES_TYPES = new Map<string, RECIPES_TYPES_I>([
 		{
 			background: snackMinor,
 			title: "Закуски",
-			subtypes: [
-				{ img: biscuitType, title: "Печенье", url: "biscuits" },
-				{ img: cupcakeType, title: "Кексы", url: "cupcakes" },
-			],
+			subtypes: [{ img: biscuitType, title: "Жаренное", url: "fried" }],
+		},
+	],
+	[
+		"fried",
+		{
+			background: snackMinor,
+			title: "Жаренное",
 		},
 	],
 ]);
@@ -212,6 +274,15 @@ export const TYPES_TRANSLATE_ENG_RU = new Map<string, string>([
 	["bread", "Хлеб"],
 	["jam", "Варенье"],
 	["cream", "Кремы"],
+	["mushroom", "Грибной"],
+	["vegetable", "Овощной"],
+	["meat", "Мясной"],
+	["cream-soup", "Крем-суп"],
+	["mash", "Пюреобразный"],
+	["cold", "Холодный"],
+	["tea", "Чай"],
+	["juice", "Сок"],
+	["fried", "Жаренное"],
 ]);
 export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Выпечка", "bakes"],
@@ -228,6 +299,15 @@ export const TYPES_TRANSLATE_RU_ENG = new Map<string, string>([
 	["Хлеб", "bread"],
 	["Варенье", "jam"],
 	["Кремы", "cream"],
+	["Грибной", "mushroom"],
+	["Овощной", "vegetable"],
+	["Мясной", "meat"],
+	["Крем-суп", "cream-soup"],
+	["Пюреобразный", "mash"],
+	["Холодный", "cold"],
+	["Чай", "tea"],
+	["Сок", "juice"],
+	["Жаренное", "fried"],
 ]);
 
 export const hostIp = "192.168.0.105";

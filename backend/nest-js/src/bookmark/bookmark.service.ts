@@ -10,10 +10,15 @@ export class BookmarkService {
 	constructor(@InjectClient() private readonly pg: Client) {}
 	async getAllWithRecipes() {
 		try {
-			const bookmarks = await this.pg.query<{ recipe: number; count: number }>(
-				`SELECT recipe, COUNT(recipe) as count FROM list_of_bookmarks GROUP BY recipe`,
+			const bookmarks = await this.pg.query<{ id: number; count: number }>(
+				`SELECT recipe as id, COUNT(recipe) as count FROM list_of_bookmarks GROUP BY recipe`,
 			);
-			return bookmarks.rows;
+			const jsonBookmarks = bookmarks.rows;
+			const allRecipes = await this.pg.query<{ id: number }>(`SELECT id FROM recipe`);
+			allRecipes.rows.forEach(({ id }) => {
+				if (jsonBookmarks.find((recipe) => recipe.id == id) == undefined) jsonBookmarks.push({ id: id, count: 0 });
+			});
+			return jsonBookmarks;
 		} catch (error) {
 			console.log(error);
 		}

@@ -15,22 +15,22 @@ export class TemporarilyScoringService {
 			console.log(error);
 		}
 	}
-	async updateAllLikes(likes: { recipe: number; count: number }[]) {
+	async updateAllLikes(likes: { id: number; count: number }[]) {
 		try {
 			likes.forEach((item) =>
 				this.pg.query(
-					`UPDATE list_of_temporarily_scoring SET likes_number = '${item.count}' WHERE recipe = '${item.recipe}'`,
+					`UPDATE list_of_temporarily_scoring SET likes_number = '${item.count}' WHERE recipe = '${item.id}'`,
 				),
 			);
 		} catch (error) {
 			console.log(error);
 		}
 	}
-	async updateAllBookmarks(bookmarks: { recipe: number; count: number }[]) {
+	async updateAllBookmarks(bookmarks: { id: number; count: number }[]) {
 		try {
 			bookmarks.forEach((item) =>
 				this.pg.query(
-					`UPDATE list_of_temporarily_scoring SET bookmarks_number = '${item.count}' WHERE recipe = '${item.recipe}'`,
+					`UPDATE list_of_temporarily_scoring SET bookmarks_number = '${item.count}' WHERE recipe = '${item.id}'`,
 				),
 			);
 		} catch (error) {

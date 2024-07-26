@@ -28,7 +28,9 @@ const changeUserPassword = async (userData: {
 const LKRouteBase = () => {
 	const { login } = useContext(AuthContext);
 
-	const { isError, isLoading, data } = useQuery("userData", () => UserService.getAll(login));
+	const { isError, isLoading, data } = useQuery("userData", () => UserService.getInfo(login));
+
+	console.log(data);
 
 	const [userData, setUserData] = useState<{ firstName: string; secondName: string }>({
 		firstName: "",

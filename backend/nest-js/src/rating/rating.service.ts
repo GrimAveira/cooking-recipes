@@ -31,16 +31,17 @@ export class RatingService {
 				this.bookmarkService.getAllWithRecipes(),
 				this.temporarilyScoringService.getAll(),
 			]);
+			console.log(likesCurrent, bookmarksCurrent, temporarilyData);
 			likesCurrent.forEach((like) => {
-				const temporarilyRecipe = temporarilyData.find((recipe) => recipe.recipe === like.recipe);
-				if (filteredComments[like.recipe]) filteredComments[like.recipe] += like.count - temporarilyRecipe.likes_number;
-				else filteredComments[like.recipe] = like.count - temporarilyRecipe.likes_number;
+				const temporarilyRecipe = temporarilyData.find((recipe) => recipe.recipe === like.id);
+				if (filteredComments[like.id]) filteredComments[like.id] += like.count - temporarilyRecipe.likes_number;
+				else filteredComments[like.id] = like.count - temporarilyRecipe.likes_number;
 			});
 			bookmarksCurrent.forEach((bookmark) => {
-				const temporarilyRecipe = temporarilyData.find((recipe) => recipe.recipe === bookmark.recipe);
-				if (filteredComments[bookmark.recipe])
-					filteredComments[bookmark.recipe] += (bookmark.count - temporarilyRecipe.bookmarks_number) * 2;
-				else filteredComments[bookmark.recipe] = (bookmark.count - temporarilyRecipe.bookmarks_number) * 2;
+				const temporarilyRecipe = temporarilyData.find((recipe) => recipe.recipe === bookmark.id);
+				if (filteredComments[bookmark.id])
+					filteredComments[bookmark.id] += (bookmark.count - temporarilyRecipe.bookmarks_number) * 2;
+				else filteredComments[bookmark.id] = (bookmark.count - temporarilyRecipe.bookmarks_number) * 2;
 			});
 			this.recipeService.updateRating(filteredComments);
 			await this.temporarilyScoringService.updateAllBookmarks(bookmarksCurrent);

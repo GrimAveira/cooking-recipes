@@ -10,10 +10,15 @@ export class LikeService {
 	constructor(@InjectClient() private readonly pg: Client) {}
 	async getAllWithRecipes() {
 		try {
-			const likes = await this.pg.query<{ recipe: number; count: number }>(
-				`SELECT recipe, COUNT(recipe) as count FROM list_of_likes GROUP BY recipe`,
+			const likes = await this.pg.query<{ id: number; count: number }>(
+				`SELECT recipe as id, COUNT(recipe) as count FROM list_of_likes GROUP BY recipe`,
 			);
-			return likes.rows;
+			const jsonLikes = likes.rows;
+			const allRecipes = await this.pg.query<{ id: number }>(`SELECT id FROM recipe`);
+			allRecipes.rows.forEach(({ id }) => {
+				if (jsonLikes.find((recipe) => recipe.id == id) == undefined) jsonLikes.push({ id: id, count: 0 });
+			});
+			return jsonLikes;
 		} catch (error) {
 			console.log(error);
 		}

@@ -10,7 +10,6 @@ function sortByOption(array: IRecipeFetch[], sortOption: options) {
 	if (sortOption === "popular") array.sort((a, b) => Number(b.rating) - Number(a.rating));
 	else if (sortOption === "recently")
 		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
-	console.log(array);
 	return pagination(array);
 }
 
@@ -26,8 +25,6 @@ const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipeF
 	useEffect(() => {
 		setSortedRecipes(sortByOption(recipes, sortOption));
 	}, [recipes, sortOption]);
-
-	console.log(sortOption);
 
 	const paginationHandler = (event: React.ChangeEvent<unknown>, value: number) => {
 		event.preventDefault();

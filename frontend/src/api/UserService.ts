@@ -58,7 +58,7 @@ export default class UserService {
 			}
 		}
 	}
-	static async getAll(login: string) {
+	static async getInfo(login: string) {
 		try {
 			const response = await axios.get<IUserFetchData>(`http://${hostIp}:3000/api/user/${login}`, {
 				withCredentials: true,
