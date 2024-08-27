@@ -2,13 +2,13 @@
 
 .container {
 	position: relative;
-	height: 470px;
-	padding: 10px;
-	background-color: $main-color;
+	height: 440px;
+
 	background-image: url("../../constants/bg-footer.png");
 	background-size: cover;
 	background-position: center;
-	background-size: 60%;
+	background-repeat: repeat;
+	background-size: 50%;
 }
 .feedbackButton {
 	display: block;
@@ -40,7 +40,6 @@
 	width: 50px;
 }
 .lineBlock {
-	margin-top: 10%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -53,7 +52,7 @@
 .img {
 	pointer-events: none;
 	position: absolute;
-	top: 20px;
+	bottom: 0;
 }
 .leftImg {
 	@extend .img;

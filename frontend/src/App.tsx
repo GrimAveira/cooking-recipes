@@ -1,39 +1,21 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/login/Login";
-import Home from "./pages/home/Home";
-import Registration from "./pages/registratrion/Registration";
-import Recipes from "./pages/recipes/Recipes";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { AuthContext, TLogin, TRole } from "./context/AuthContext";
 import UserService from "./api/UserService";
 import { useMutation } from "react-query";
 import { promiseFail } from "./functions/toastTrigger";
 import { IAuthInfo } from "./interfaces/index";
-
-const routerShell = createBrowserRouter([
-	{
-		path: "/",
-		element: <Home />,
-	},
-	{
-		path: "/login",
-		element: <Login />,
-	},
-	{
-		path: "/registration",
-		element: <Registration />,
-	},
-	{
-		path: "recipes/:type",
-		element: <Recipes />,
-	},
-	{
-		path: "recipes/:type/:subtype",
-		element: <Recipes />,
-	},
-]);
+import HomeRoute from "./pages/home/HomeRoute";
+import LoginRoute from "./pages/login/LoginRoute";
+import RegistrationRoute from "./pages/registratrion/RegistrationRoute";
+import RecipesRoute from "./pages/recipes/RecipesRoute";
+import CreateRoute from "./pages/create/CreateRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loader from "./components/loader/Loader";
+import CustomError from "./components/custom-error/CustomError";
+import BookmarksRoute from "./pages/bookmarks/BookmarksRoute";
+import LKRoute from "./pages/lk/LKRoute";
 
 const checkIsAuth = async () => {
 	const data = await UserService.isAuth();
@@ -42,18 +24,68 @@ const checkIsAuth = async () => {
 
 function App() {
 	const [isAuth, setIsAuth] = useState(false);
-	const [role, setRole] = useState<TRole>(null);
-	const [login, setLogin] = useState<TLogin>(null);
+	const [role, setRole] = useState<TRole>("");
+	const [login, setLogin] = useState<TLogin>("");
+
+	const routerShell = createBrowserRouter([
+		{
+			path: "/",
+			element: <HomeRoute />,
+		},
+		{
+			path: "/login",
+			element: <LoginRoute />,
+		},
+		{
+			path: "/registration",
+			element: <RegistrationRoute />,
+		},
+		{
+			path: "/recipes/:type",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "/recipes/:type/:subtype",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "/recipes/:type/:subtype/:id",
+			element: <RecipesRoute />,
+		},
+		{
+			path: "*",
+			element: <CustomError description="Несуществующий путь" />,
+		},
+		isAuth
+			? {
+					path: "/create",
+					element: <CreateRoute />,
+				}
+			: {},
+		isAuth
+			? {
+					path: "/bookmarks",
+					element: <BookmarksRoute />,
+				}
+			: {},
+		isAuth
+			? {
+					path: "/lk",
+					element: <LKRoute />,
+				}
+			: {},
+	]);
 
 	const mutationAuth = useMutation({
 		mutationFn: checkIsAuth,
-		onSuccess(response: IAuthInfo) {
+		onSuccess({ role, login }: IAuthInfo) {
 			setIsAuth(true);
-			setRole(response.role);
-			setLogin(response.login);
+			setRole(role);
+			setLogin(login);
 		},
 		onError(message: string) {
 			promiseFail(message);
+			setLogin("");
 		},
 	});
 
@@ -64,7 +96,7 @@ function App() {
 
 	return (
 		<AuthContext.Provider value={{ isAuth, role, login, setIsAuth, setRole, setLogin }}>
-			<RouterProvider router={routerShell} />
+			<RouterProvider router={routerShell} fallbackElement={<Loader />} />
 			<ToastContainer />
 		</AuthContext.Provider>
 	);

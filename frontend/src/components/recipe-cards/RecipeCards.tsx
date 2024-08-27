@@ -2,61 +2,76 @@ import { useEffect, useState } from "react";
 import RecipeOptions from "../recipe-options/RecipeOptions";
 import styles from "./RecipeCards.module.scss";
 import RecipeCard from "../recipe-card/RecipeCard";
-import { useQuery } from "react-query";
-import RecipeService from "../../api/RecipeService";
-import { TYPES_TRANSLATE } from "../../constants";
-import { IRecipe } from "../../interfaces";
+import { IRecipeFetch } from "../../interfaces";
+import { Pagination } from "@mui/material";
+import pagination from "../../functions/pagination";
 
-const filterRecipe = (array: IRecipe[], type: string, subtype?: string) => {
-	console.log("join", type, subtype, TYPES_TRANSLATE.get(type));
-	let filteredArray = [...array];
+function sortByOption(array: IRecipeFetch[], sortOption: options) {
+	if (sortOption === "popular") array.sort((a, b) => Number(b.rating) - Number(a.rating));
+	else if (sortOption === "recently")
+		array.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
+	return pagination(array);
+}
 
-	if (subtype && TYPES_TRANSLATE.get(subtype)) {
-		filteredArray = filteredArray.filter(
-			(recipe) => recipe.subtype === TYPES_TRANSLATE.get(subtype),
-		);
-	} else if (type && TYPES_TRANSLATE.get(type)) {
-		filteredArray = filteredArray.filter((recipe) => recipe.type === TYPES_TRANSLATE.get(type));
-	}
-	return filteredArray;
-};
+export type options = "popular" | "recently";
 
-const RecipesWrapper = (props: { type?: string; subtype?: string }) => {
-	const { type, subtype } = props;
+const RecipeCards = (props: { type?: string; subtype?: string; recipes: IRecipeFetch[] }) => {
+	const { recipes } = props;
 
-	const [filter, setFilter] = useState("popular");
-
-	const [handledRecipes, setHandledRecipes] = useState<IRecipe[]>([]);
-
-	const { isPending, error, data } = useQuery({
-		queryKey: ["recipes"],
-		queryFn: () => {
-			return RecipeService.getAll();
-		},
-	});
+	const [sortOption, setSortOption] = useState<options>("popular");
+	const [sortedRecipes, setSortedRecipes] = useState<IRecipeFetch[][]>([]);
+	const [page, setPage] = useState<number>(1);
 
 	useEffect(() => {
-		if (data && type) setHandledRecipes(filterRecipe(data, type, subtype));
-	}, [data, subtype, type]);
+		setSortedRecipes(sortByOption(recipes, sortOption));
+	}, [recipes, sortOption]);
 
-	// type options = "popular" | "recently";
-
-	// function sortByOption(array: Array<string>, option: options) {
-	// 	return array.filter((elem) => elem === option);
-	// }
+	const paginationHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+		event.preventDefault();
+		setPage(value);
+	};
 
 	return (
 		<>
-			<p className={styles.recipeCount}>{`Всего найдено рецептов: ${223}`}</p>
-			<RecipeOptions setFilter={setFilter} />
-			<div className={styles.divLine} />
-			<div className={styles.containerCards}>
-				{handledRecipes?.map((recipe) => {
-					return <RecipeCard key={recipe.id} {...recipe} />;
-				})}
-			</div>
+			{recipes.length ? (
+				<>
+					<p className={styles.recipeCount}>{`Всего найдено рецептов: ${recipes.length}`}</p>
+					<RecipeOptions
+						className={styles.options}
+						setFilter={setSortOption}
+						sortOption={sortOption}
+					/>
+					<div className={styles.divLine} />
+					<div className={styles.containerCards}>
+						{sortedRecipes[page - 1]?.map((recipe) => {
+							return <RecipeCard key={recipe.id} {...recipe} />;
+						})}
+					</div>
+					<Pagination
+						className={styles.pagination}
+						count={Math.ceil(recipes.length / 12)}
+						sx={{
+							".MuiPaginationItem-text": {
+								color: "#ffffff !important",
+							},
+							".Mui-selected": {
+								backgroundColor: "#dc8d61 !important",
+							},
+							".Mui-selected:hover": {
+								backgroundColor: "#8898a6 !important",
+							},
+						}}
+						page={page}
+						onChange={paginationHandler}
+						size="large"
+						color="primary"
+					/>
+				</>
+			) : (
+				<h2>Рецептов не найдено</h2>
+			)}
 		</>
 	);
 };
 
-export default RecipesWrapper;
+export default RecipeCards;

@@ -20,8 +20,6 @@ const URLIcon = (icon: URLIconI) => {
 const Footer = () => {
 	return (
 		<footer className={styles.container}>
-			<img src="/src/constants/left-bg-footer.png" alt="блюдо" className={styles.leftImg} />
-			<button className={styles.feedbackButton}>Обратная связь</button>
 			<section className={styles.lineBlock}>
 				<div className={styles.line} />
 				<ul className={styles.about}>
@@ -31,6 +29,9 @@ const Footer = () => {
 				</ul>
 				<div className={styles.line} />
 			</section>
+			<img src="/src/constants/left-bg-footer.png" alt="блюдо" className={styles.leftImg} />
+			<button className={styles.feedbackButton}>Обратная связь</button>
+
 			<img src="/src/constants/right-bg-footer.png" alt="блюдо" className={styles.rightImg} />
 		</footer>
 	);

@@ -1,13 +1,11 @@
 import axios from "axios";
-import { IUserData } from "../interfaces";
+import { IUserData, IUserFetchData } from "../interfaces";
+import { hostIp } from "../constants";
 axios.defaults.withCredentials = true;
 export default class UserService {
 	static async registration(userData: IUserData) {
 		try {
-			const response = await axios.post(
-				"http://192.168.0.106:3000/api/auth/registration",
-				userData,
-			);
+			const response = await axios.post(`http://${hostIp}:3000/api/auth/registration`, userData);
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -19,7 +17,10 @@ export default class UserService {
 	}
 	static async authorization(userData: IUserData) {
 		try {
-			const response = await axios.post("http://192.168.0.106:3000/api/auth/login", userData);
+			const response = await axios.post(`http://${hostIp}:3000/api/auth/login`, userData, {
+				withCredentials: true,
+			});
+			console.log(response);
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -31,7 +32,9 @@ export default class UserService {
 	}
 	static async logout() {
 		try {
-			const response = await axios.delete("http://192.168.0.106:3000/api/auth/logout");
+			const response = await axios.get(`http://${hostIp}:3000/api/auth/logout`, {
+				withCredentials: true,
+			});
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -43,7 +46,55 @@ export default class UserService {
 	}
 	static async isAuth() {
 		try {
-			const response = await axios.get("http://192.168.0.106:3000/api/auth/isAuth");
+			const response = await axios.get(`http://${hostIp}:3000/api/auth/isAuth`, {
+				withCredentials: true,
+			});
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				throw error.response?.data;
+			} else if (error instanceof Error) {
+				throw error.message;
+			}
+		}
+	}
+	static async getInfo(login: string) {
+		try {
+			const response = await axios.get<IUserFetchData>(`http://${hostIp}:3000/api/user/${login}`, {
+				withCredentials: true,
+			});
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				throw error.response?.data;
+			} else if (error instanceof Error) {
+				throw error.message;
+			}
+		}
+	}
+	static async updateData(payload: { firstName: string; secondName: string; login: string }) {
+		try {
+			const response = await axios.put(`http://${hostIp}:3000/api/user/updateData`, payload, {
+				withCredentials: true,
+			});
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				throw error.response?.data;
+			} else if (error instanceof Error) {
+				throw error.message;
+			}
+		}
+	}
+	static async updatePassword(payload: {
+		login: string;
+		oldPassword: string;
+		newPassword: string;
+	}) {
+		try {
+			const response = await axios.put(`http://${hostIp}:3000/api/user/updatePassword`, payload, {
+				withCredentials: true,
+			});
 			return response.data;
 		} catch (error) {
 			if (axios.isAxiosError(error)) {

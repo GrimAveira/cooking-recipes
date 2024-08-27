@@ -18,8 +18,8 @@ export interface IAuthInfo {
 	login: string;
 	message: string;
 }
-export interface IRecipe {
-	id: number;
+export interface IRecipeFetch {
+	id: string;
 	title: string;
 	description: string;
 	creation_date: string;
@@ -27,14 +27,96 @@ export interface IRecipe {
 	active_cooking_time: string;
 	complexity: string;
 	storage_time: string;
-	sevings_number: number;
-	calories_number: number;
-	score_number: number;
-	rating: number;
+	servings_number: string;
+	calories_number: string;
+	rating: string;
 	image_path: string;
 	first_name: string;
 	second_name: string;
 	kitchen: string;
 	type: string;
 	subtype: string;
+}
+export interface IData {
+	id: string;
+	name: string;
+}
+export interface IIngredientsFetch {
+	recipe: string;
+	name: string;
+	notation: string;
+	quantity: string;
+}
+export interface IComment {
+	user: string;
+	recipe: string;
+	description: string;
+	first_name: string;
+	second_name: string;
+}
+export interface IOptions {
+	value: string;
+	title: string;
+}
+export interface IDataFetch {
+	id: string;
+	name: string;
+}
+export interface ICookingStage {
+	stageId: number;
+	stageTitle: string;
+	description: string;
+}
+export interface IRecipe {
+	login: string;
+	title: string;
+	description: string;
+	total_cooking_time: string;
+	active_cooking_time: string;
+	complexity: string;
+	storage_time: string;
+	servings_number: string;
+	calories_number: string;
+	image?: FormData;
+	kitchen: string;
+	type: string;
+	subtype: string;
+}
+export interface IClassification {
+	type: string;
+	subtype: string;
+}
+export interface IIngredient {
+	ingredientId: number;
+	ingredient: string;
+	notation: string;
+	quantity: string;
+}
+export interface ICommentAdd {
+	recipe: string;
+	user: string;
+	description: string;
+}
+export interface ICookingStageFetch {
+	id: string;
+	recipe: string;
+	order_number: string;
+	description: string;
+	title: string;
+}
+export interface IGetUserInfo {
+	recipeID: string;
+	login: string;
+}
+export interface IChangeByUser {
+	recipeID: string;
+	login: string;
+	flag: boolean;
+}
+export interface IUserFetchData {
+	email: string;
+	first_name: string;
+	login: string;
+	role: string;
+	second_name: string;
 }

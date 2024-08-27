@@ -1,0 +1,14 @@
+@import "../../style/variables.scss";
+
+.container {
+	display: flex;
+	align-items: center;
+
+	margin: 20px;
+}
+.select {
+	margin: 10px;
+}
+.delIng:hover path {
+	stroke: $brick-color;
+}
