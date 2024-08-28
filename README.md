@@ -4,4 +4,4 @@ Web-application for cooking recipes with rating system basing on sentiment analy
 
 ## Preview
 
-![Watch the video](img/Cooking-recipes.gif)
+![Watch the video](./img/Cooking-recipes.gif)
